@@ -1,0 +1,6 @@
+{
+  "passfail"      : false,
+  "maxerr"        : 50,
+  "strict"        : false,
+  "globalstrict"  : true
+}
