@@ -16,6 +16,7 @@ header {
       color: $color-white;
       text-transform: uppercase;
       border-right: 1px solid $color-white;
+      text-decoration: none;
       &:last-child, &.last {
         border-right: none;
       }

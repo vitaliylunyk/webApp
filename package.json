@@ -36,6 +36,8 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
-    "angular": "^1.6.4"
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "ng-dialog": "^1.0.1"
   }
 }

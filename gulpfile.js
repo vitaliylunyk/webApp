@@ -17,17 +17,37 @@ const gulp = require('gulp'),
 
     // Libs
     gulp.task('vendor-scripts', () => {
-      return gulp.src(  [
-        'node_modules/angular/angular.js'
+      return gulp.src([
+        'node_modules/angular/angular.min.js',
+        'node_modules/angular-route/angular-route.min.js',
+        'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+        'node_modules/ng-dialog/js/ngDialog.min.js'
       ])
         .pipe(gulp.dest('dist/scripts'))
         .pipe(browserSync.reload({stream: true}))
         .pipe(notify({ message: 'Vendor scripts task complete' }));
     });
 
+    //libs styles
+    gulp.task('vendor-styles', () => {
+      return gulp.src([
+        'node_modules/ng-dialog/css/ngDialog.min.css',
+        'node_modules/ng-dialog/css/ngDialog-theme-default.min.css'
+      ])
+        .pipe(gulp.dest('dist/styles'))
+        .pipe(browserSync.reload({stream: true}))
+        .pipe(notify({ message: 'Vendor scripts task complete' }));
+    });
+
     // File Index.html
     gulp.task('html', ['views', 'styles', 'scripts'], () => {
-    const injectFiles = gulp.src(['dist/styles/*.css', 'dist/scripts/*.js']);
+    const injectFiles = gulp.src([
+      'dist/styles/*.css',
+      'dist/scripts/angular.min.js',
+      'dist/scripts/angular-route.min.js',
+      'dist/scripts/ngDialog.min.js',
+      'dist/scripts/main.min.js'
+    ]);
     return gulp.src('app/index.html')
       .pipe(inject(injectFiles, {addRootSlash: false, ignorePath: ['dist']}))
       .pipe(browserSync.reload({stream: true}))
@@ -42,8 +62,8 @@ const gulp = require('gulp'),
     });
 
     // Styles
-    gulp.task('styles', () => {
-      return gulp.src('app/scss/styles.scss')
+    gulp.task('styles', ['vendor-styles'], () => {
+      return gulp.src('app/style/styles.scss')
         .pipe(sass())
         .pipe(autoprefixer('last 2 version'))
         .pipe(rename({ suffix: '.min' }))
@@ -123,5 +143,5 @@ const gulp = require('gulp'),
 
     // Default task
     gulp.task('default', (callback) => {
-      runSequence('clean', ['images', 'fonts', 'html', 'browserSync', 'watch'], callback)
+      runSequence('clean', ['images', 'fonts', 'html', 'watch', 'browserSync',], callback)
     });

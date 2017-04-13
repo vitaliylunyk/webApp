@@ -1,0 +1,28 @@
+footer {
+  .footer-links {
+    width: 100%;
+    background-color: $color-primary;
+    border-radius: 0 0 5px 5px;
+    padding: 3px 0;
+    .footer-links-right {
+      float: right;
+    }
+    .footer-links-item {
+      display: inline-block;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      color: $color-white;
+      text-transform: uppercase;
+      border-right: 1px solid $color-white;
+      text-decoration: none;
+      &:last-child {
+        border-right: none;
+        cursor: default;
+      }
+      &.last {
+        border-right: none;
+      }
+    }
+  }
+}

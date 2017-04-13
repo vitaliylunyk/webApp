@@ -1,18 +1,18 @@
 <header>
   <div class="header-links">
-    <div class="header-links-item">delivery</div>
-    <div class="header-links-item">payments</div>
-    <div class="header-links-item">about</div>
-    <div class="header-links-item">faq</div>
-    <div class="header-links-item last">terms and conditions</div>
+    <a href="#delivery" class="header-links-item">delivery</a>
+    <a href="#payments" class="header-links-item">payments</a>
+    <a href="#about" class="header-links-item">about</a>
+    <a href="#faq" class="header-links-item">faq</a>
+    <a href="#terms" class="header-links-item last">terms and conditions</a>
     <div class="header-links-right">
-      <div class="header-links-item">sing up</div>
-      <div class="header-links-item">sing in</div>
+      <div class="header-links-item" ng-click="headerVm.openRegistration()">sing up</div>
+      <div class="header-links-item" ng-click="headerVm.openLogin()">sing in</div>
     </div>
   </div>
   <div class="header-container">
     <div class="header-logo-wrapper">
-      <div class="header-logo-image"></div>
+      <a href="#" class="header-logo-image"></a>
       <div class="header-logo-text">
         <div class="header-text">test web store</div>
       </div>
