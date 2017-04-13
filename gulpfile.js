@@ -20,23 +20,30 @@ const gulp = require('gulp'),
       return gulp.src(  [
         'node_modules/angular/angular.js'
       ])
-        .pipe(concat('libs.js'))
         .pipe(gulp.dest('dist/scripts'))
         .pipe(browserSync.reload({stream: true}))
         .pipe(notify({ message: 'Vendor scripts task complete' }));
     });
 
     // File Index.html
-    gulp.task('html', ['styles', 'scripts'], () => {
-    const injectFiles = gulp.src(['dist/styles/styles.min.css', 'dist/scripts/libs.js', 'dist/scripts/main.min.js']);
+    gulp.task('html', ['views', 'styles', 'scripts'], () => {
+    const injectFiles = gulp.src(['dist/styles/*.css', 'dist/scripts/*.js']);
     return gulp.src('app/index.html')
-      .pipe(inject(injectFiles, {addRootSlash: false, ignorePath: ['src', 'dist']}))
+      .pipe(inject(injectFiles, {addRootSlash: false, ignorePath: ['dist']}))
+      .pipe(browserSync.reload({stream: true}))
+      .pipe(gulp.dest('dist'));
+    });
+
+    //views
+    gulp.task('views', () => {
+    return gulp.src('app/assets/**/*.html')
+    .pipe(browserSync.reload({stream: true}))
       .pipe(gulp.dest('dist'));
     });
 
     // Styles
     gulp.task('styles', () => {
-      return gulp.src('app/scss/**/*.scss')
+      return gulp.src('app/scss/styles.scss')
         .pipe(sass())
         .pipe(autoprefixer('last 2 version'))
         .pipe(rename({ suffix: '.min' }))
@@ -48,7 +55,7 @@ const gulp = require('gulp'),
 
     // Scripts
     gulp.task('scripts', ['vendor-scripts'], () => {
-      return gulp.src('app/js/**/*.js')
+      return gulp.src(['app/js/**/*.js', 'app/assets/**/*.js'])
         .pipe(babel({presets: ['es2015']}))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
@@ -62,7 +69,7 @@ const gulp = require('gulp'),
 
     // Images
     gulp.task('images', () => {
-      return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg)')
+      return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg|ico)')
         .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
         .pipe(gulp.dest('dist/images'))
         .pipe(browserSync.reload({stream: true}))
@@ -97,11 +104,14 @@ const gulp = require('gulp'),
       // Watch index.html file
       gulp.watch('app/index.html', ['html']);
 
+      // Watch .html files
+      gulp.watch('app/assets/**/*.html', ['views']);
+
       // Watch .scss files
-      gulp.watch('app/scss/**/*.scss', ['styles']);
+      gulp.watch('app/**/*.scss', ['styles']);
 
       // Watch .js files
-      gulp.watch('app/js/**/*.js', ['scripts']);
+      gulp.watch('app/**/*.js', ['scripts']);
 
       // Watch image files
       gulp.watch('app/images/**/*', ['images']);

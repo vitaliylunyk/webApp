@@ -1,0 +1,94 @@
+header {
+  padding: 0 10px 20px;
+  .header-links {
+    width: 100%;
+    background-color: $color-primary;
+    border-radius: 5px 5px 0 0;
+    padding: 3px 0;
+    .header-links-right {
+      float: right;
+    }
+    .header-links-item {
+      display: inline-block;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      color: $color-white;
+      text-transform: uppercase;
+      border-right: 1px solid $color-white;
+      &:last-child, &.last {
+        border-right: none;
+      }
+    }
+  }
+  .header-container {
+    display: block;
+    height: 150px;
+    .header-logo-wrapper {
+      padding: 10px;
+      height: 100%;
+      box-sizing: border-box;
+      width: 75%;
+      display: inline-block;
+      .header-logo-image {
+        display: inline-block;
+        box-sizing: border-box;
+        background: url("../images/icon.svg") no-repeat center center;
+        width: 150px;
+        height: 100%;
+        cursor: pointer;
+        &:hover {
+          + .header-logo-text {
+            .header-text {
+              color: $color-primary;
+            }
+          }
+        }
+      }
+      .header-logo-text {
+        width: calc(100% - 250px);
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        padding: 45px 10px 0;
+        .header-text {
+          font-size: 30px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: $color-secondary;
+          cursor: default;
+        }
+      }
+    }
+    .header-cart {
+      width: 25%;
+      height: 100%;
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 10px;
+      position: relative;
+      float: right;
+      .header-cart-icon {
+        font-family: 'webApp';
+        vertical-align: text-bottom;
+        cursor: pointer;
+        color: $color-secondary;
+        font-size: 100px;
+        &:before {
+          content: $icon-cart;
+        }
+        &:hover {
+          color: $color-primary;
+        }
+      }
+      .header-cart-text {
+        position: absolute;
+        top: 30%;
+        left: 25%;
+        font-size: 25px;
+        color: $color-primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

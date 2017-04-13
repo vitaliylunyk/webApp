@@ -1,0 +1,85 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M415.8 911.4c-61.2 0-110.8-49.8-110.8-110.8 0-61.2 49.8-110.8 110.8-110.8 61.2 0 110.8 49.8 110.8 110.8 0.2 61.2-49.6 110.8-110.8 110.8zM415.8 732c-37.8 0-68.6 30.8-68.6 68.6s30.8 68.6 68.6 68.6c37.8 0 68.6-30.8 68.6-68.6s-30.6-68.6-68.6-68.6z",
+          "M730 911.4c-61.2 0-110.8-49.8-110.8-110.8 0-61.2 49.8-110.8 110.8-110.8s110.8 49.8 110.8 110.8c0 61.2-49.6 110.8-110.8 110.8zM730 732c-37.8 0-68.6 30.8-68.6 68.6s30.8 68.6 68.6 68.6 68.6-30.8 68.6-68.6-30.8-68.6-68.6-68.6z",
+          "M839.4 721.4h-533c-9.8 0-18.2-6.6-20.4-16.2l-133.8-550.4h-131.2c-11.6 0-21-9.6-21-21.2s9.4-21 21-21h147.8c9.8 0 18.2 6.6 20.4 16.2l42 172.8h771.6c7.2 0 13.8 3.6 17.6 9.6s4.6 13.4 1.8 20l-163.4 377.8c-3.4 7.4-11 12.4-19.4 12.4zM323 679.2h502.6l145.2-335.6h-729.2l81.4 335.6z"
+        ],
+        "attrs": [
+          {
+            "fill": "rgb(106, 110, 124)"
+          },
+          {
+            "fill": "rgb(106, 110, 124)"
+          },
+          {
+            "fill": "rgb(106, 110, 124)"
+          }
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "basket"
+        ]
+      },
+      "attrs": [
+        {
+          "fill": "rgb(106, 110, 124)"
+        },
+        {
+          "fill": "rgb(106, 110, 124)"
+        },
+        {
+          "fill": "rgb(106, 110, 124)"
+        }
+      ],
+      "properties": {
+        "order": 2,
+        "id": 0,
+        "name": "basket",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 0
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "webApp"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showCodes": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "webApp",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215
+    },
+    "historySize": 50
+  }
+}

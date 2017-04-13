@@ -1,6 +1,18 @@
 {
   "passfail"      : false,
   "maxerr"        : 50,
-  "strict"        : false,
-  "globalstrict"  : true
+  "strict"        : true,
+  "globalstrict"  : true,
+  "undef": true,
+  "unused": false,
+  "globals": {
+        "jasmine": true,
+        "angular": true,
+        "browser": true,
+        "element": true,
+        "by":true,
+        "io":true,
+        "_":false,
+        "$":false
+    }
 }
