@@ -1,2 +1,2 @@
 'use strict';
-const app = angular.module('app', ['ngRoute', 'ngDialog']);
+const app = angular.module('app', ['ngRoute', 'ngResource', 'ngAnimate', 'ngDialog']);

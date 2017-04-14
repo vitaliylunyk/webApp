@@ -1,3 +1,15 @@
-<div class="popup-container">
-  registration
+<div class="popup-container" user-directive>
+  <div class="popup-form">
+    <input type="email" placeholder="email" ng-model="userVm.email" class="popup-input">
+    <input type="password" placeholder="password" ng-model="userVm.password" class="popup-input">
+    <input type="text" placeholder="first name" ng-model="userVm.first_name" class="popup-input">
+    <input type="text" placeholder="last name" ng-model="userVm.last_name" class="popup-input">
+    <input type="text" placeholder="date of birth" ng-model="userVm.date_of_birth" class="popup-input">
+    <input type="text" placeholder="phone number" ng-model="userVm.phone_number" class="popup-input">
+    <input type="text" placeholder="zip code" ng-model="userVm.zip_code" class="popup-input">
+    <input type="text" placeholder="country" ng-model="userVm.country" class="popup-input">
+    <input type="text" placeholder="city" ng-model="userVm.city" class="popup-input">
+    <input type="text" placeholder="address" ng-model="userVm.address" class="popup-input">
+    <button class="popup-button" ng-click="userVm.userRegister()">Login</button>
+  </div>
 </div>

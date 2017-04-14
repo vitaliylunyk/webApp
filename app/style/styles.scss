@@ -1,17 +1,12 @@
 @import "variables";
 @import "fonts";
-@import "app/assets/header/style/header";
-@import "app/assets/footer/style/footer";
+@import "app/assets/common/style/common";
+@import "app/assets/common/popups/style/popups";
+@import "app/assets/common/header/style/header";
+@import "app/assets/common/footer/style/footer";
 @import "app/assets/delivery/style/delivery";
 @import "app/assets/home/style/home";
 @import "app/assets/payments/style/payments";
 @import "app/assets/about/style/about";
 @import "app/assets/faq/style/faq";
 @import "app/assets/terms/style/terms";
-body {
-  margin: 0;
-  .main-container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-}
