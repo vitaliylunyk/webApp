@@ -15,6 +15,23 @@
       &:focus {
         border-color: $color-secondary;
       }
+      &.date {
+        cursor: text;
+      }
+      &.has-error {
+        border-color: $color-error;
+        + label {
+          &.has-error {
+            color: $color-error;
+            font-size: 12px;
+          }
+        }
+      }
+      &.ng-valid {
+        &.ng-not-empty {
+          border-color: $color-success;
+        }
+      }
     }
     .popup-button {
       padding: 15px;
@@ -30,6 +47,73 @@
       outline: none;
       cursor: pointer;
       margin-left: 25%;
+    }
+    .popup-select {
+      position: relative;
+      width: 100%;
+      margin-top: 20px;
+      border: 2px solid $color-grey;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      outline: none;
+      color: $color-secondary;
+      background-color: $color-white;
+      .ui-select-choices {
+        max-height: 150px;
+        overflow: auto;
+        background-color: $color-white;
+        position: absolute;
+        z-index: 99;
+        border: 2px solid $color-grey;
+        top: 53px;
+      }
+      .ui-select-match {
+        padding: 13px;
+        height: 52px;
+        box-sizing: border-box;
+      }
+      .ui-select-search {
+        outline: none;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        height: 52px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .ui-select-choices-row {
+        &:hover {
+          background-color: $color-secondary;
+        }
+        .option {
+          cursor: pointer;
+          padding: 2px;
+          text-align: center;
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+      &.country, &.city {
+        &.has-error {
+          border-color: $color-error;
+        }
+        &.ng-valid {
+          &.ng-not-empty {
+            border-color: $color-success;
+          }
+        }
+        + .select-error-label {
+          display: none;
+          color: $color-error;
+          font-size: 12px;
+          &.has-error {
+            display: block;
+          }
+        }
+      }
     }
   }
 }

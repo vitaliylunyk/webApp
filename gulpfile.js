@@ -20,8 +20,13 @@ const gulp = require('gulp'),
       return gulp.src([
         'node_modules/angular/angular.min.js',
         'node_modules/angular-route/angular-route.min.js',
-        'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-        'node_modules/ng-dialog/js/ngDialog.min.js'
+        'node_modules/angular-resource/angular-resource.min.js',
+        'node_modules/angular-animate/angular-animate.min.js',
+        'node_modules/angular-sanitize/angular-sanitize.min.js',
+        'node_modules/ui-select/dist/select.min.js',
+        'node_modules/ng-dialog/js/ngDialog.min.js',
+        'node_modules/angular-datepicker/dist/index.min.js',
+        'bower_components/tg-angular-validator/dist/angular-validator.min.js',
       ])
         .pipe(gulp.dest('dist/scripts'))
         .pipe(browserSync.reload({stream: true}))
@@ -32,7 +37,9 @@ const gulp = require('gulp'),
     gulp.task('vendor-styles', () => {
       return gulp.src([
         'node_modules/ng-dialog/css/ngDialog.min.css',
-        'node_modules/ng-dialog/css/ngDialog-theme-default.min.css'
+        'node_modules/ng-dialog/css/ngDialog-theme-default.min.css',
+        'node_modules/angular-datepicker/dist/index.min.css',
+        'node_modules/ui-select/dist/select.min.css'
       ])
         .pipe(gulp.dest('dist/styles'))
         .pipe(browserSync.reload({stream: true}))
@@ -45,8 +52,14 @@ const gulp = require('gulp'),
       'dist/styles/*.css',
       'dist/scripts/angular.min.js',
       'dist/scripts/angular-route.min.js',
+      'dist/scripts/angular-resource.min.js',
+      'dist/scripts/angular-animate.min.js',
+      'dist/scripts/angular-sanitize.min.js',
+      'dist/scripts/select.min.js',
       'dist/scripts/ngDialog.min.js',
-      'dist/scripts/main.min.js'
+      'dist/scripts/index.min.js',
+      'dist/scripts/main.min.js',
+      'dist/scripts/angular-validator.min.js',
     ]);
     return gulp.src('app/index.html')
       .pipe(inject(injectFiles, {addRootSlash: false, ignorePath: ['dist']}))
@@ -143,5 +156,5 @@ const gulp = require('gulp'),
 
     // Default task
     gulp.task('default', (callback) => {
-      runSequence('clean', ['images', 'fonts', 'html', 'watch', 'browserSync',], callback)
+      runSequence('clean', ['images', 'fonts', 'html', 'watch'], callback)
     });

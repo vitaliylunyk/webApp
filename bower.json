@@ -1,0 +1,17 @@
+{
+  "name": "web-app",
+  "description": "test app",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tg-angular-validator": "^1.2.9"
+  }
+}

@@ -6,15 +6,18 @@
   "undef": true,
   "unused": false,
   "validthis": true,
+  "devel": true,
+  "expr": true,
   "globals": {
         "jasmine": true,
         "angular": true,
         "browser": true,
         "element": true,
+        "$http": true,
         "by":true,
         "io":true,
         "_":false,
         "$":false,
-        "app": false
+        "app": true
     }
 }
