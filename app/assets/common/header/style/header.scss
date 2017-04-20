@@ -21,6 +21,45 @@ header {
         border-right: none;
       }
     }
+    .user-data {
+      position: relative;
+      .user-login {
+       display: inline-block;
+       padding: 10px;
+       font-size: 14px;
+       cursor: pointer;
+       color: $color-white;
+       text-transform: uppercase;
+       text-decoration: none;
+       &:hover +.user-data-dropdown {
+         display: block;
+       }
+     }
+     &-dropdown {
+       display: none;
+       position: absolute;
+       left: 0;
+       background-color: $color-white;
+       border: 2px solid $color-primary;
+       border-radius: 0 0 10px 10px;
+       z-index: 99;
+       padding: 10px;
+       cursor: pointer;
+       &:hover {
+         display: block;
+       }
+       &-link {
+         font-size: 14px;
+         color: $color-secondary;
+         text-decoration: none;
+         text-transform: uppercase;
+         line-height: 25px;
+         &:hover {
+           color: $color-primary;
+         }
+       }
+     }
+    }
   }
   .header-container {
     display: block;
@@ -62,19 +101,19 @@ header {
       }
     }
     .header-cart {
-      width: 25%;
-      height: 100%;
       display: inline-block;
       box-sizing: border-box;
       padding: 10px;
       position: relative;
       float: right;
-      .header-cart-icon {
+      margin-right: 30px;
+      &-icon {
         font-family: 'webApp';
         vertical-align: text-bottom;
         cursor: pointer;
         color: $color-secondary;
         font-size: 100px;
+        text-decoration: none;
         &:before {
           content: $icon-cart;
         }
@@ -82,10 +121,10 @@ header {
           color: $color-primary;
         }
       }
-      .header-cart-text {
+      &-text {
         position: absolute;
-        top: 30%;
-        left: 25%;
+        top: 37%;
+        left: 45%;
         font-size: 25px;
         color: $color-primary;
         cursor: pointer;

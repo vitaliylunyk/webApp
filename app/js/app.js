@@ -8,5 +8,6 @@ const app = angular.module('app',
    'ui.select',
    'ngDialog',
    'datePicker',
-   'angularValidator'
+   'angularValidator',
+   'ngCookies'
  ]);

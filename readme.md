@@ -1,6 +1,6 @@
-To use it you have to clone the files into your computer and dowload all the dependencies with
+To use it you have to clone the files into your computer and download all the dependencies with
 
-`npm install`
+`npm install`,
 `bower install`
 
 To run it, write gulp on your console.

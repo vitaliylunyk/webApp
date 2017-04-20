@@ -26,6 +26,7 @@ const gulp = require('gulp'),
         'node_modules/ui-select/dist/select.min.js',
         'node_modules/ng-dialog/js/ngDialog.min.js',
         'node_modules/angular-datepicker/dist/index.min.js',
+        'node_modules/angular-cookies/angular-cookies.min.js',
         'bower_components/tg-angular-validator/dist/angular-validator.min.js',
       ])
         .pipe(gulp.dest('dist/scripts'))
@@ -58,8 +59,9 @@ const gulp = require('gulp'),
       'dist/scripts/select.min.js',
       'dist/scripts/ngDialog.min.js',
       'dist/scripts/index.min.js',
-      'dist/scripts/main.min.js',
       'dist/scripts/angular-validator.min.js',
+      'dist/scripts/angular-cookies.min.js',
+      'dist/scripts/main.min.js'
     ]);
     return gulp.src('app/index.html')
       .pipe(inject(injectFiles, {addRootSlash: false, ignorePath: ['dist']}))

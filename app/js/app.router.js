@@ -20,6 +20,29 @@ app.config(['$routeProvider', '$locationProvider',
       .when('/terms', {
         templateUrl: 'terms/terms.html'
       })
+      .when('/profile', {
+        templateUrl: 'profile/profile.html',
+        resolve: {
+          checkAccess: checkAccess
+        }
+      })
+      .when('/cart', {
+        templateUrl: 'cart/cart.html',
+        resolve: {
+          checkAccess: checkAccess
+        }
+      })
       .otherwise({redirectTo: '/'});
       $locationProvider.hashPrefix('');
 }]);
+
+checkAccess.$inject = ['accessService', '$location'];
+function checkAccess (accessService, $location) {
+  accessService.checkPermission()
+    .then( (res) => {
+      if (!res) {
+        $location.path('/');
+        console.log("access denied");
+      }
+    });
+}

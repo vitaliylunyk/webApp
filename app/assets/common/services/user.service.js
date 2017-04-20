@@ -9,7 +9,7 @@ function userService ($http) {
     .then( (res) => {
       return res.data;
     }).catch( (e) => {
-      console.log('error with getting countries ');
+      console.log('error with getting countries');
     });
   }
 
@@ -18,7 +18,21 @@ function userService ($http) {
     .then( (res) => {
       return res.data.cities;
     }).catch( (e) => {
-      console.log('error with getting cities ');
+      console.log('error with getting cities');
+    });
+  }
+
+  let getUserInfo = (token) => {
+    let header = {
+      headers: {
+      authorization: token
+    }
+  }
+    return $http.get('http://192.168.2.65:3000/customer/', header)
+    .then( (res) => {
+      return res
+    }).catch( (e) => {
+      console.log('error with getting user');
     });
   }
 
@@ -27,7 +41,7 @@ function userService ($http) {
       .then( (res) => {
         return res.data;
       }).catch( (e) => {
-        console.log('error with login ');
+        console.log('error with login');
       });
   }
 
@@ -45,7 +59,8 @@ function userService ($http) {
     getCoutriesList: getCoutriesList,
     getCitiesList: getCitiesList,
     userLogin: userLogin,
-    userRegister: userRegister
+    userRegister: userRegister,
+    getUserInfo: getUserInfo
   };
   return service;
 }

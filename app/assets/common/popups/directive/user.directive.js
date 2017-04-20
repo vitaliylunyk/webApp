@@ -13,8 +13,8 @@ function userDirective() {
     return directive;
 }
 
-userController.$inject = ['$scope', 'userService', 'ngDialog', '$route', 'userId'];
-function userController ($scope, userService, ngDialog, $route) {
+userController.$inject = ['$scope', 'userService', 'ngDialog', '$route', 'currentService'];
+function userController ($scope, userService, ngDialog, $route, currentService) {
   let vm = this;
   vm.show_city = false;
   vm.country_selected = null;
@@ -35,14 +35,20 @@ function userController ($scope, userService, ngDialog, $route) {
   }
   vm.userLogin = () => {
     let data = {
-      login: vm.login,
+      email: vm.login,
       password: vm.password
     };
     userService.userLogin(data)
     .then( (res) => {
-      if(res.success) {
-        userId =
-        $route.reload();
+      if(res && res.success) {
+        userService.getUserInfo(res.token)
+        .then( (res) => {
+          currentService.setData('userData', res.data)
+          .then( (res) => {
+            $route.reload();
+            ngDialog.closeAll();
+          })
+        })
       } else {
         ngDialog.closeAll();
         ngDialog.open({
