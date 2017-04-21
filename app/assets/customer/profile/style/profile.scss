@@ -1,12 +1,75 @@
-.home-container {
+.profile-container {
   min-height: 500px;
   height: auto;
-  .popup-form {
+  .delete-button {
+    padding: 15px;
+    margin-top: 20px;
+    width: 50%;
+    border: 2px solid $color-grey;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: $color-secondary;
+    color: $color-primary;
+    outline: none;
+    cursor: pointer;
+    margin-left: 25%;
+    margin-bottom: 30px;
+  }
+  .profile-form {
     padding: 20px 50px;
     box-sizing: border-box;
-    .popup-input {
+    .profile-field {
+      text-align: center;
+      font-size: 20px;
+      margin: 15px 0;
+      border-bottom: 1px solid $color-primary;
+      padding: 0 0 10px;
+      .profile-data {
+        i {
+          font-family: 'webApp';
+          font-size: 12px;
+          color: $color-secondary;
+          cursor: pointer;
+          &:before {
+            content: $icon-edit;
+          }
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+      .input-container {
+        display: none;
+        position: relative;
+        color: $color-secondary;
+        .save {
+          font-family: 'webApp';
+          font-size: 30px;
+          position: absolute;
+          right: 0;
+          top: 5px;
+          color: $color-secondary;
+          font-style: normal;
+          cursor: pointer;
+          &:before {
+            content: $icon-save;
+          }
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+      &.edit {
+        .input-container {
+          display: block;
+        }
+      }
+    }
+    .profile-input {
       padding: 15px;
-      width: 100%;
+      width: calc(100% - 100px);
       margin-top: 20px;
       border: 2px solid $color-grey;
       border-radius: 10px;
@@ -14,6 +77,7 @@
       font-weight: bold;
       outline: none;
       color: $color-secondary;
+      display: block;
       &:focus {
         border-color: $color-secondary;
       }
@@ -35,7 +99,7 @@
         }
       }
     }
-    .popup-button {
+    .profile-button {
       padding: 15px;
       margin-top: 20px;
       width: 50%;
@@ -50,9 +114,9 @@
       cursor: pointer;
       margin-left: 25%;
     }
-    .popup-select {
+    .profile-select {
       position: relative;
-      width: 100%;
+      width: calc(100% - 70px);
       margin-top: 20px;
       border: 2px solid $color-grey;
       border-radius: 10px;

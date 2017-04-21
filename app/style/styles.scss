@@ -1,6 +1,7 @@
 @import "variables";
 @import "fonts";
 @import "app/assets/common/style/common";
+@import "app/assets/common/components/loading/style/loading";
 @import "app/assets/common/popups/style/popups";
 @import "app/assets/common/header/style/header";
 @import "app/assets/common/footer/style/footer";
@@ -10,5 +11,5 @@
 @import "app/assets/about/style/about";
 @import "app/assets/faq/style/faq";
 @import "app/assets/terms/style/terms";
-@import "app/assets/profile/style/profile";
+@import "app/assets/customer/profile/style/profile";
 @import "app/assets/cart/style/cart";

@@ -11,7 +11,7 @@
         <div class="header-links-item" ng-click="headerVm.openLogin()">sing in</div>
       </div>
       <div class="user-data" ng-if="headerVm.isEmpty()">
-        <a href="#profile" class="user-login" ng-bind="headerVm.userName"></a>
+        <a href="#profile" class="user-login"><i></i> {{headerVm.userName}}</a>
         <span class="user-data-dropdown">
           <a href="#profile" class="user-data-dropdown-link">Profile</a>
           <a class="user-data-dropdown-link" ng-click="headerVm.userLogout()">Logout</a>
@@ -27,8 +27,9 @@
       </div>
     </div>
     <div class="header-cart">
-      <a href="#cart" class="header-cart-icon"></a>
-      <div class="header-cart-text">10</div>
+      <a href="#cart" class="header-cart-icon">
+        <div class="header-cart-text">10</div>
+      </a>
     </div>
   </div>
 </header>

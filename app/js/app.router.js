@@ -21,7 +21,7 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: 'terms/terms.html'
       })
       .when('/profile', {
-        templateUrl: 'profile/profile.html',
+        templateUrl: 'customer/profile/profile.html',
         resolve: {
           checkAccess: checkAccess
         }

@@ -1,0 +1,170 @@
+<div class="profile-container">
+  <form class="profile-form" angular-validator-submit="profileVm.userUpdate()" name="profileForm" novalidate angular-validator>
+    <div class="profile-field">
+      <div class="profile-data">
+        <span class="user-data">Email: {{profileVm.userData.email}}</span>
+        <i ng-click="profileVm.showInput($event)"></i>
+      </div>
+      <div class="input-container">
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          ng-model="profileVm.userData.email"
+          class="profile-input"
+          invalid-message="'please, enter a correct email'"
+          validate-on="dirty">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+      </div>
+     </div>
+     <div class="profile-field">
+       <div class="profile-data">
+         <span class="user-data">First name: {{profileVm.userData.first_name}}</span>
+         <i ng-click="profileVm.showInput($event)"></i>
+       </div>
+       <div class="input-container">
+         <input
+          type="text"
+          name="firstName"
+          placeholder="first name"
+          ng-model="profileVm.userData.first_name"
+          class="profile-input"
+          validate-on="dirty">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+       </div>
+     </div>
+     <div class="profile-field">
+       <div class="profile-data">
+         <span class="user-data">Last name: {{profileVm.userData.last_name}}</span>
+         <i ng-click="profileVm.showInput($event)"></i>
+       </div>
+       <div class="input-container">
+         <input
+          type="text"
+          name="lastName"
+          placeholder="last name"
+          ng-model="profileVm.userData.last_name"
+          class="profile-input"
+          validate-on="dirty">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+       </div>
+     </div>
+     <div class="profile-field">
+       <div class="profile-data">
+         <span class="user-data">Date of birth: {{profileVm.userData.date_of_birth}}</span>
+         <i ng-click="profileVm.showInput($event)"></i>
+       </div>
+       <div class="input-container">
+         <input
+          date-time
+          format="MM/dd/yyyy"
+          min-view="date"
+          placeholder="date of birth"
+          ng-model="profileVm.userData.date_of_birth"
+          class="profile-input date">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+       </div>
+     </div>
+     <div class="profile-field">
+       <div class="profile-data">
+         <span class="user-data">Phone number: {{profileVm.userData.phone_number}}</span>
+         <i ng-click="profileVm.showInput($event)"></i>
+       </div>
+       <div class="input-container">
+         <input
+          type="text"
+          name="phoneNumber"
+          placeholder="phone number"
+          ng-pattern="/^\d+$/"
+          ng-model="profileVm.userData.phone_number"
+          class="profile-input"
+          invalid-message="'please, enter numbers only'"
+          validate-on="dirty">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+       </div>
+      </div>
+      <div class="profile-field">
+        <div class="profile-data">
+          <span class="user-data">Zip code: {{profileVm.userData.zip_code}}</span>
+          <i ng-click="profileVm.showInput($event)"></i>
+        </div>
+       <div class="input-container">
+         <input
+          type="text"
+          name="zipCode"
+          placeholder="zip code"
+          ng-pattern="/^\d+$/"
+          ng-model="profileVm.userData.zip_code"
+          class="profile-input"
+          invalid-message="'please, enter numbers only'"
+          validate-on="dirty">
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+       </div>
+     </div>
+     <div class="profile-field">
+       <div class="profile-data">
+         <span class="user-data">{{profileVm.userData.country}}, {{profileVm.userData.country}}</span>
+         <i ng-click="profileVm.showInput($event)"></i>
+       </div>
+       <div class="input-container">
+          <ui-select
+            ng-model="profileVm.userData.country"
+            name="country"
+            theme="selectize"
+            class="profile-select country"
+            on-select="userVm.countrySelected()"
+            ng-class="{'has-error':registerForm.$submitted && registerForm.country.$invalid}">
+            <ui-select-match placeholder="Select country">{{$select.selected.country}}</ui-select-match>
+            <ui-select-choices repeat="item in userVm.countries | filter: $select.search" refresh-delay="0">
+              <div ng-bind-html="item.country| highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+      </div>
+      <div class="input-container">
+        <ui-select
+         ng-model="profileVm.userData.city"
+         name="city"
+         theme="selectize"
+         ng-disabled="disabled"
+         class="profile-select city"
+         ng-class="{'has-error':registerForm.$submitted && registerForm.city.$invalid}">
+          <ui-select-match placeholder="city">{{$select.selected}}</ui-select-match>
+          <ui-select-choices repeat="item in userVm.cities track by $index" refresh-delay="0">
+            <span ng-bind-html="item | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <i class="save" ng-click="profileVm.editUserInfo($event)"></i>
+      </div>
+    </div>
+    <div class="profile-field">
+      <div class="profile-data">
+        <span class="user-data">Password</span>
+        <i ng-click="profileVm.showInput($event)"></i>
+      </div>
+      <div class="input-container">
+        <input
+         type="password"
+         name="password"
+         placeholder="password"
+         ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"
+         ng-model="profileVm.userData.password"
+         class="profile-input"
+         invalid-message="'minimum 8 characters at least 1 alphabet and 1 number'"
+         validate-on="dirty">
+     </div>
+     <div class="input-container">
+       <input
+        type="password"
+        name="confirmPassword"
+        placeholder="confirm password"
+        ng-model="profileVm.userData.confirmPassword"
+        class="profile-input"
+        validator = "userVm.password === userVm.confirmPassword"
+        invalid-message="'passwords do not mach'"
+        validate-on="dirty">
+      <i class="save" ng-click="profileVm.changePassword($event)"></i>
+     </div>
+    </div>
+  </form>
+  <button class="delete-button" ng-click="profileVm.confirmDelete()">Delete account</button>
+</div>

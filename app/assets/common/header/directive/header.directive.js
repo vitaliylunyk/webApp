@@ -14,8 +14,8 @@ function headerDirective() {
     return directive;
 }
 
-headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location'];
-function headerController ($scope, ngDialog, currentService, accessService, $location) {
+headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location', '$route'];
+function headerController ($scope, ngDialog, currentService, accessService, $location, $route) {
   let vm = this;
   vm.getUserData = () => {
      currentService.getData('userData')
@@ -51,8 +51,12 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
   }
   vm.userLogout = () => {
     currentService.removeData('userData')
-    .then( (res) => {
-      $location.path('/');
+    .then( () => {
+      accessService.removePermission()
+        .then( () => {
+          $location.path('/');
+          $route.reload();
+        });
     });
   }
   vm.activate = () => {

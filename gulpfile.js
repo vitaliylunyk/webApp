@@ -120,7 +120,7 @@ const gulp = require('gulp'),
     });
 
     // browser sync
-    gulp.task('browserSync', () => {
+    gulp.task('browserSync', ['images', 'fonts', 'html'], () => {
       browserSync.init({
         server: {
           baseDir: 'dist'
@@ -158,5 +158,5 @@ const gulp = require('gulp'),
 
     // Default task
     gulp.task('default', (callback) => {
-      runSequence('clean', ['images', 'fonts', 'html', 'watch'], callback)
+      runSequence('clean', ['watch'], callback)
     });

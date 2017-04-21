@@ -13,8 +13,8 @@ function userDirective() {
     return directive;
 }
 
-userController.$inject = ['$scope', 'userService', 'ngDialog', '$route', 'currentService'];
-function userController ($scope, userService, ngDialog, $route, currentService) {
+userController.$inject = ['$scope', 'userService', 'ngDialog', '$route', 'currentService', '$location'];
+function userController ($scope, userService, ngDialog, $route, currentService, $location) {
   let vm = this;
   vm.show_city = false;
   vm.country_selected = null;
@@ -41,14 +41,11 @@ function userController ($scope, userService, ngDialog, $route, currentService) 
     userService.userLogin(data)
     .then( (res) => {
       if(res && res.success) {
-        userService.getUserInfo(res.token)
+        currentService.setData('userData', res)
         .then( (res) => {
-          currentService.setData('userData', res.data)
-          .then( (res) => {
-            $route.reload();
-            ngDialog.closeAll();
-          })
-        })
+          $route.reload();
+          ngDialog.closeAll();
+        });
       } else {
         ngDialog.closeAll();
         ngDialog.open({
@@ -77,19 +74,37 @@ function userController ($scope, userService, ngDialog, $route, currentService) 
     }
     userService.userRegister(data)
       .then( (res) => {
-        if(res.success) {
-          ngDialog.open({
-            template: 'common/popups/view/success.html',
-            className: 'ngdialog-theme-default'
-          });
-        } else {
+        if(!res.success) {
           ngDialog.closeAll();
           ngDialog.open({
             template: 'common/popups/view/error.html',
             className: 'ngdialog-theme-default'
           });
+        } else {
+          ngDialog.closeAll();
+          ngDialog.open({
+            template: 'common/popups/view/success.html',
+            className: 'ngdialog-theme-default'
+          });
         }
       });
+  }
+  vm.deleteUser = () => {
+    currentService.getData('userData')
+      .then( (res)=> {
+        userService.userDelete(res.token)
+          .then( () => {
+            currentService.removeData('userData')
+              .then( () => {
+                $route.reload();
+                $location.path("/");
+                ngDialog.closeAll();
+              });
+          });
+      });
+  }
+  vm.cancel = () => {
+    ngDialog.closeAll();
   }
   vm.activate = () => {
     vm.getCountries();

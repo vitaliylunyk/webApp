@@ -34,6 +34,15 @@ header {
        &:hover +.user-data-dropdown {
          display: block;
        }
+       i {
+         font-family: 'webApp';
+         font-size: 16px;
+         font-style: normal;
+         vertical-align: text-bottom;
+         &:before {
+           content: $icon-user;
+         }
+       }
      }
      &-dropdown {
        display: none;
@@ -45,6 +54,7 @@ header {
        z-index: 99;
        padding: 10px;
        cursor: pointer;
+       width: 65px;
        &:hover {
          display: block;
        }
@@ -119,6 +129,9 @@ header {
         }
         &:hover {
           color: $color-primary;
+          .header-cart-text {
+            color: $color-primary;
+          }
         }
       }
       &-text {
@@ -126,7 +139,7 @@ header {
         top: 37%;
         left: 45%;
         font-size: 25px;
-        color: $color-primary;
+        color: $color-secondary;
         cursor: pointer;
       }
     }

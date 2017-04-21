@@ -26,8 +26,8 @@ function userService ($http) {
     let header = {
       headers: {
       authorization: token
+      }
     }
-  }
     return $http.get('http://192.168.2.65:3000/customer/', header)
     .then( (res) => {
       return res
@@ -49,9 +49,36 @@ function userService ($http) {
       return $http.post('http://192.168.2.65:3000/customers', data)
       .then((res) => {
         return res.data;
-      })
-      .catch( (e) => {
+      }).catch( (e) => {
         console.log('error with registration');
+      });
+  }
+
+  let userDelete = (token) => {
+      let header = {
+        headers: {
+        authorization: token
+        }
+      }
+      return $http.delete('http://192.168.2.65:3000/customer', header)
+      .then( (res) => {
+        return res.data;
+      }).catch( (e) => {
+        console.log('error with deleting user');
+      });
+  }
+
+  let userEdit = (userData, token) => {
+      let header = {
+        headers: {
+          authorization: token
+        }
+      }
+      return $http.put('http://192.168.2.65:3000/customer', userData, header)
+      .then( (res) => {
+        return res.data;
+      }).catch( (e) => {
+        console.log('error with editing user info');
       });
   }
 
@@ -60,7 +87,9 @@ function userService ($http) {
     getCitiesList: getCitiesList,
     userLogin: userLogin,
     userRegister: userRegister,
-    getUserInfo: getUserInfo
+    getUserInfo: getUserInfo,
+    userDelete: userDelete,
+    userEdit: userEdit
   };
   return service;
 }

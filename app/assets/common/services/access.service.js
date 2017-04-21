@@ -13,6 +13,14 @@ function accessService ($q, $timeout) {
     }, 10);
     return deferred.promise;
   }
+  let removePermission = () => {
+    let deferred = $q.defer();
+    vm.access = false;
+    $timeout(() => {
+      deferred.resolve(vm.access);
+    }, 10);
+    return deferred.promise;
+  }
   let checkPermission = () => {
     let deferred = $q.defer();
     $timeout(() => {
@@ -23,7 +31,8 @@ function accessService ($q, $timeout) {
 
   let service = {
     setPermission: setPermission,
-    checkPermission: checkPermission
+    checkPermission: checkPermission,
+    removePermission: removePermission
   };
   return service;
 }
