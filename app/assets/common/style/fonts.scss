@@ -1,0 +1,83 @@
+//icon font
+@font-face {
+  font-family: 'webApp';
+  src: url('../fonts/webApp/webApp.eot');
+  src: url('../fonts/webApp/webApp.woff') format('woff'),
+       url('../fonts/webApp/webApp.ttf')  format('truetype'),
+       url('../fonts/webApp/webApp.svg#svgwebApp') format('svg');
+}
+
+//open sans font family
+//lights
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+//regular
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 400;
+    font-style: italic;
+}
+//semi bold
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Semibolditalic.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 600;
+    font-style: italic;
+}
+//bold
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 700;
+    font-style: italic;
+}
+//extra bold
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-weight: 800;
+    font-style: italic;
+}

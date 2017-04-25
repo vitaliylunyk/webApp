@@ -4,10 +4,10 @@ footer {
     background-color: $color-primary;
     border-radius: 0 0 5px 5px;
     padding: 3px 0;
-    .footer-links-right {
+    &-right {
       float: right;
     }
-    .footer-links-item {
+    &-item {
       display: inline-block;
       padding: 10px;
       font-size: 14px;
@@ -19,9 +19,30 @@ footer {
       &:last-child {
         border-right: none;
         cursor: default;
+        &:hover {
+          color: $color-white;
+        }
       }
       &.last {
         border-right: none;
+      }
+      &:hover {
+        color: $color-secondary;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  footer {
+    .footer-links {
+      a {
+        display: none;
+      }
+      &-right {
+        clear: right;
+        text-align: center;
+        float: none;
       }
     }
   }

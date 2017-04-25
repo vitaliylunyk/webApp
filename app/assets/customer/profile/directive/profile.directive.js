@@ -16,6 +16,18 @@ function profileDirective() {
 profileControler.$inject = ['$scope', 'currentService', 'ngDialog', 'userService', '$route'];
 function profileControler ($scope, currentService, ngDialog, userService, $route) {
     let vm = this;
+    vm.getCountries = () => {
+      userService.getCoutriesList()
+        .then( (res) => {
+          vm.countries = res;
+        });
+    }
+    vm.getCities = () => {
+      userService.getCitiesList(vm.userData.country._id)
+      .then( (res) => {
+        vm.cities = res;
+      });
+    }
     vm.confirmDelete = () => {
       ngDialog.open({
         template: 'common/popups/view/delete-confirm.html',
@@ -25,9 +37,12 @@ function profileControler ($scope, currentService, ngDialog, userService, $route
     vm.getUserData = () => {
        currentService.getData('userData')
       .then( (res) => {
-        if (res) {
-          vm.userData = res;
-        }
+          userService.getUserInfo(res.token)
+            .then( (res) => {
+              vm.userData = res.data;
+              vm.getCountries();
+              vm.getCities();
+            });
       });
     }
     vm.showInput = (e) => {

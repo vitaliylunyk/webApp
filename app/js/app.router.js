@@ -32,13 +32,16 @@ app.config(['$routeProvider', '$locationProvider',
           checkAccess: checkAccess
         }
       })
+      .when('/category/:name*', {
+        templateUrl: 'category/category.html'
+      })
       .otherwise({redirectTo: '/'});
       $locationProvider.hashPrefix('');
 }]);
 
 checkAccess.$inject = ['accessService', '$location'];
 function checkAccess (accessService, $location) {
-  accessService.checkPermission()
+  accessService.checkPermission("access")
     .then( (res) => {
       if (!res) {
         $location.path('/');

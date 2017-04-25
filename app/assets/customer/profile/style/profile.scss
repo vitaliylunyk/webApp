@@ -22,16 +22,19 @@
     box-sizing: border-box;
     .profile-field {
       text-align: center;
-      font-size: 20px;
+      font-size: 30px;
       margin: 15px 0;
       border-bottom: 1px solid $color-primary;
       padding: 0 0 10px;
       .profile-data {
+        color: $color-secondary;
         i {
           font-family: 'webApp';
-          font-size: 12px;
+          font-size: 20px;
           color: $color-secondary;
           cursor: pointer;
+          font-style: normal;
+          margin-left: 10px;
           &:before {
             content: $icon-edit;
           }

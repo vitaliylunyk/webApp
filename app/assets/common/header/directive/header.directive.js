@@ -14,14 +14,14 @@ function headerDirective() {
     return directive;
 }
 
-headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location', '$route'];
-function headerController ($scope, ngDialog, currentService, accessService, $location, $route) {
+headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location', '$route', 'itemsService'];
+function headerController ($scope, ngDialog, currentService, accessService, $location, $route, itemsService) {
   let vm = this;
   vm.getUserData = () => {
      currentService.getData('userData')
     .then( (res) => {
       if (res) {
-        accessService.setPermission()
+        accessService.setPermission("access")
         .then( () => {
           vm.userData = res;
           vm.userName = vm.userData.first_name + " " + vm.userData.last_name;
@@ -52,15 +52,22 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
   vm.userLogout = () => {
     currentService.removeData('userData')
     .then( () => {
-      accessService.removePermission()
+      accessService.removePermission("access")
         .then( () => {
           $location.path('/');
           $route.reload();
         });
     });
   }
+  vm.getCategories = () => {
+    itemsService.getCategories()
+      .then( (res)=> {
+        vm.categories = res;
+      });
+  }
   vm.activate = () => {
     vm.getUserData();
+    vm.getCategories();
   }
   vm.activate();
 }

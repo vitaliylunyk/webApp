@@ -1,12 +1,27 @@
-::-webkit-input-placeholder {color:$color-grey; text-transform: uppercase;}
-::-moz-placeholder          {color:$color-grey;text-transform: uppercase;}
-:-moz-placeholder           {color:$color-grey;text-transform: uppercase;}
-:-ms-input-placeholder      {color:$color-grey;text-transform: uppercase;}
+::-webkit-input-placeholder {
+  color:$color-grey;
+   text-transform: uppercase;
+ }
+::-moz-placeholder {
+  color:$color-grey;
+  text-transform: uppercase;
+}
+:-moz-placeholder {
+  color:$color-grey;
+  text-transform: uppercase;
+}
+:-ms-input-placeholder {
+  color:$color-grey;
+  text-transform: uppercase;
+}
 
 body {
   margin: 0;
   .main-container {
+    font-family: 'Open Sans';
+    position: relative;
     max-width: 900px;
     margin: 0 auto;
+    padding: 0 10px;
   }
 }

@@ -1,30 +1,27 @@
 'use strict';
 app.factory('accessService', accessService);
 
-accessService.$inject = ['$q', '$timeout'];
-function accessService ($q, $timeout) {
+accessService.$inject = ['$cookies','$q', '$timeout'];
+function accessService ($cookies, $q, $timeout) {
   let vm = this;
-  vm.access = false;
-  let setPermission = () => {
+  let setPermission = (data) => {
     let deferred = $q.defer();
-    vm.access = true;
     $timeout(() => {
-      deferred.resolve(vm.access);
+      deferred.resolve($cookies.put(data, "true"));
     }, 10);
     return deferred.promise;
   }
-  let removePermission = () => {
+  let removePermission = (data) => {
     let deferred = $q.defer();
-    vm.access = false;
     $timeout(() => {
-      deferred.resolve(vm.access);
+      deferred.resolve($cookies.remove(data));
     }, 10);
     return deferred.promise;
   }
-  let checkPermission = () => {
+  let checkPermission = (data) => {
     let deferred = $q.defer();
     $timeout(() => {
-      deferred.resolve(vm.access);
+      deferred.resolve($cookies.get(data));
     }, 10);
     return deferred.promise;
   }

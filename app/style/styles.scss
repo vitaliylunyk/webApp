@@ -1,5 +1,5 @@
-@import "variables";
-@import "fonts";
+@import "app/assets/common/style/variables";
+@import "app/assets/common/style/fonts";
 @import "app/assets/common/style/common";
 @import "app/assets/common/components/loading/style/loading";
 @import "app/assets/common/popups/style/popups";
@@ -13,3 +13,4 @@
 @import "app/assets/terms/style/terms";
 @import "app/assets/customer/profile/style/profile";
 @import "app/assets/cart/style/cart";
+@import "app/assets/category/style/category";

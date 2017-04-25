@@ -103,7 +103,7 @@
      </div>
      <div class="profile-field">
        <div class="profile-data">
-         <span class="user-data">{{profileVm.userData.country}}, {{profileVm.userData.country}}</span>
+         <span class="user-data">{{profileVm.userData.country.country}}, {{profileVm.userData.city}}</span>
          <i ng-click="profileVm.showInput($event)"></i>
        </div>
        <div class="input-container">
@@ -112,10 +112,10 @@
             name="country"
             theme="selectize"
             class="profile-select country"
-            on-select="userVm.countrySelected()"
+            on-select="profileVm.countrySelected()"
             ng-class="{'has-error':registerForm.$submitted && registerForm.country.$invalid}">
             <ui-select-match placeholder="Select country">{{$select.selected.country}}</ui-select-match>
-            <ui-select-choices repeat="item in userVm.countries | filter: $select.search" refresh-delay="0">
+            <ui-select-choices repeat="item in profileVm.countries | filter: $select.search" refresh-delay="0">
               <div ng-bind-html="item.country| highlight: $select.search"></div>
             </ui-select-choices>
           </ui-select>
@@ -129,7 +129,7 @@
          class="profile-select city"
          ng-class="{'has-error':registerForm.$submitted && registerForm.city.$invalid}">
           <ui-select-match placeholder="city">{{$select.selected}}</ui-select-match>
-          <ui-select-choices repeat="item in userVm.cities track by $index" refresh-delay="0">
+          <ui-select-choices repeat="item in profileVm.cities track by $index" refresh-delay="0">
             <span ng-bind-html="item | highlight: $select.search"></span>
           </ui-select-choices>
         </ui-select>
