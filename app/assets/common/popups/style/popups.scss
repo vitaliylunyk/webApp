@@ -116,4 +116,56 @@
       }
     }
   }
+  //error popup
+  .error {
+    &-wrapper {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+    }
+    &-icon {
+      font-family: 'webApp';
+      font-size: 100px;
+      color: $color-error;
+      height: 100px;
+      line-height: 50px;
+      i {
+        font-style: normal;
+        &:before {
+          content: $icon-error;
+        }
+      }
+    }
+    &-text {
+      font-size: 20px;
+      color: $color-error;
+      font-weight: 600;
+    }
+  }
+  //success popup
+  .success {
+    &-wrapper {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+    }
+    &-icon {
+      font-family: 'webApp';
+      font-size: 100px;
+      color: $color-success;
+      height: 100px;
+      line-height: 50px;
+      i {
+        font-style: normal;
+        &:before {
+          content: $icon-success;
+        }
+      }
+    }
+    &-text {
+      font-size: 20px;
+      color: $color-success;
+      font-weight: 600;
+    }
+  }
 }

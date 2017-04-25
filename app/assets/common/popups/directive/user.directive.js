@@ -50,7 +50,8 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
         ngDialog.closeAll();
         ngDialog.open({
           template: 'common/popups/view/error.html',
-          className: 'ngdialog-theme-default'
+          className: 'ngdialog-theme-default',
+          data: res.response
         });
       }
     });
@@ -78,7 +79,8 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
           ngDialog.closeAll();
           ngDialog.open({
             template: 'common/popups/view/error.html',
-            className: 'ngdialog-theme-default'
+            className: 'ngdialog-theme-default',
+            data: res.response
           });
         } else {
           ngDialog.closeAll();
