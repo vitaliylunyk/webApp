@@ -17,6 +17,14 @@ function headerDirective() {
 headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location', '$route', 'itemsService'];
 function headerController ($scope, ngDialog, currentService, accessService, $location, $route, itemsService) {
   let vm = this;
+  vm.showError = (errorData) => {
+    ngDialog.closeAll();
+    ngDialog.open({
+      template: 'common/popups/view/error.html',
+      className: 'ngdialog-theme-default',
+      data: errorData
+    });
+  }
   vm.getUserData = () => {
      currentService.getData('userData')
     .then( (res) => {
@@ -25,8 +33,14 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
         .then( () => {
           vm.userData = res;
           vm.userName = vm.userData.first_name + " " + vm.userData.last_name;
+        })
+        .catch( (e) => {
+          vm.showError(e);
         });
       }
+    })
+    .catch( (e) => {
+      vm.showError(e);
     });
   }
   vm.isEmpty = () => {
@@ -56,13 +70,22 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
         .then( () => {
           $location.path('/');
           $route.reload();
+        })
+        .catch( (e) => {
+          vm.showError(e);
         });
+    })
+    .catch( (e) => {
+      vm.showError(e);
     });
   }
   vm.getCategories = () => {
     itemsService.getCategories()
       .then( (res)=> {
         vm.categories = res;
+      })
+      .catch( (e) => {
+        vm.showError(e);
       });
   }
   vm.activate = () => {

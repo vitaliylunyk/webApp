@@ -1,85 +1,113 @@
 'use strict';
 app.factory('userService', userService);
 
-userService.$inject = ['$http'];
-function userService ($http) {
-
+userService.$inject = ['$http', 'ngDialog', 'api', '$q'];
+function userService ($http, ngDialog, api, $q) {
+  let vm = this;
   let getCoutriesList = () => {
-    return $http.get('http://192.168.2.65:3000/countries')
+    let deferred = $q.defer();
+    $http.get(api + '/countries')
     .then( (res) => {
-      return res.data;
-    }).catch( (e) => {
+      deferred.resolve(res.data);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
       console.log('error with getting countries');
     });
+    return deferred.promise;
   }
 
   let getCitiesList = (countryId) => {
-    return $http.get('http://192.168.2.65:3000/cities/' + countryId)
+    let deferred = $q.defer();
+    $http.get(api + '/cities/' + countryId)
     .then( (res) => {
-      return res.data.cities;
-    }).catch( (e) => {
+      deferred.resolve(res.data.cities);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
       console.log('error with getting cities');
     });
+    return deferred.promise;
   }
 
   let getUserInfo = (token) => {
+    let deferred = $q.defer();
     let header = {
       headers: {
       authorization: token
       }
     }
-    return $http.get('http://192.168.2.65:3000/customer/', header)
+    $http.get(api + '/customer/', header)
     .then( (res) => {
-      return res
-    }).catch( (e) => {
+      deferred.resolve(res);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
       console.log('error with getting user');
     });
+    return deferred.promise;
   }
 
   let userLogin = (data) => {
-      return $http.post('http://192.168.2.65:3000/authenticate', data)
+    let deferred = $q.defer();
+    $http.post(api + '/authenticate', data)
       .then( (res) => {
-        return res.data;
-      }).catch( (e) => {
+        deferred.resolve(res);
+      })
+      .catch( (e) => {
+        deferred.reject(e);
         console.log('error with login');
       });
+    return deferred.promise;
   }
 
   let userRegister =  (data) => {
-      return $http.post('http://192.168.2.65:3000/customers', data)
+    let deferred = $q.defer();
+    $http.post(api + '/customers', data)
       .then((res) => {
-        return res.data;
-      }).catch( (e) => {
+        deferred.resolve(res.data);
+      })
+      .catch( (e) => {
+        deferred.reject(e);
         console.log('error with registration');
       });
+    return deferred.promise;
   }
 
   let userDelete = (token) => {
-      let header = {
-        headers: {
-        authorization: token
-        }
+    let deferred = $q.defer();
+    let header = {
+      headers: {
+      authorization: token
       }
-      return $http.delete('http://192.168.2.65:3000/customer', header)
+    }
+    $http.delete(api + '/customer', header)
       .then( (res) => {
-        return res.data;
-      }).catch( (e) => {
+        deferred.resolve(res.data);
+      })
+      .catch( (e) => {
+        deferred.reject(e);
         console.log('error with deleting user');
       });
+    return deferred.promise;
   }
 
   let userEdit = (userData, token) => {
-      let header = {
-        headers: {
-          authorization: token
-        }
+    let deferred = $q.defer();
+    let header = {
+      headers: {
+        authorization: token
       }
-      return $http.put('http://192.168.2.65:3000/customer', userData, header)
+    }
+    $http.put(api + '/customer', userData, header)
       .then( (res) => {
-        return res.data;
-      }).catch( (e) => {
+        deferred.resolve(res.data);
+      })
+      .catch( (e) => {
+        deferred.reject(e);
         console.log('error with editing user info');
       });
+    return deferred.promise;
   }
 
   let service = {

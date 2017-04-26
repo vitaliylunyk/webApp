@@ -19,10 +19,21 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
   vm.show_city = false;
   vm.country_selected = null;
   vm.city_selected = null;
+  vm.showError = (errorData) => {
+    ngDialog.closeAll();
+    ngDialog.open({
+      template: 'common/popups/view/error.html',
+      className: 'ngdialog-theme-default',
+      data: errorData
+    });
+  }
   vm.getCountries = () => {
     userService.getCoutriesList()
       .then( (res) => {
         vm.countries = res;
+      })
+      .catch( (e) => {
+          vm.showError(e);
       });
   }
   vm.countrySelected = () => {
@@ -31,6 +42,9 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
       vm.cities = res;
       vm.city_selected = null;
       vm.show_city = true;
+    })
+    .catch( (e) => {
+      vm.showError(e);
     });
   }
   vm.userLogin = () => {
@@ -40,20 +54,17 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
     };
     userService.userLogin(data)
     .then( (res) => {
-      if(res && res.success) {
-        currentService.setData('userData', res)
+        currentService.setData('userData', res.data)
         .then( (res) => {
           $route.reload();
           ngDialog.closeAll();
+        })
+        .catch( (e) => {
+          vm.showError(e);
         });
-      } else {
-        ngDialog.closeAll();
-        ngDialog.open({
-          template: 'common/popups/view/error.html',
-          className: 'ngdialog-theme-default',
-          data: res.response
-        });
-      }
+    })
+    .catch( (e) => {
+      vm.showError(e);
     });
   }
   vm.userRegister = () => {
@@ -75,20 +86,14 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
     }
     userService.userRegister(data)
       .then( (res) => {
-        if(!res.success) {
-          ngDialog.closeAll();
-          ngDialog.open({
-            template: 'common/popups/view/error.html',
-            className: 'ngdialog-theme-default',
-            data: res.response
-          });
-        } else {
           ngDialog.closeAll();
           ngDialog.open({
             template: 'common/popups/view/success.html',
             className: 'ngdialog-theme-default'
           });
-        }
+      })
+      .catch( (e) => {
+        vm.showError(e);
       });
   }
   vm.deleteUser = () => {
@@ -101,7 +106,13 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
                 $route.reload();
                 $location.path("/");
                 ngDialog.closeAll();
+              })
+              .catch( (e) => {
+                vm.showError(e);
               });
+          })
+          .catch( (e) => {
+            vm.showError(e);
           });
       });
   }

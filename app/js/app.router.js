@@ -43,9 +43,15 @@ checkAccess.$inject = ['accessService', '$location'];
 function checkAccess (accessService, $location) {
   accessService.checkPermission("access")
     .then( (res) => {
-      if (!res) {
+      if (res) {
+        return res;
+      } else {
         $location.path('/');
         console.log("access denied");
       }
+    })
+    .catch( (e) => {
+      $location.path('/');
+      console.log("access denied");
     });
 }

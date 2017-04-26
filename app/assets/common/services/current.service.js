@@ -1,27 +1,36 @@
 'use strict';
 app.factory('currentService', currentService);
 
-currentService.$inject = ['$cookies', '$q', '$timeout'];
-function currentService ($cookies, $q, $timeout) {
+currentService.$inject = ['$cookies', '$q'];
+function currentService ($cookies, $q) {
   let setData = (dataName, userData) => {
     let deferred = $q.defer();
-    $timeout(() => {
+    try {
       deferred.resolve($cookies.putObject(dataName, userData));
-    }, 10);
+    } catch (e) {
+      deferred.reject(e);
+      console.log('error with setting data');
+    }
     return deferred.promise;
   }
   let getData = (dataName) => {
     let deferred = $q.defer();
-    $timeout(() => {
-      deferred.resolve($cookies.getObject(dataName));
-    }, 10);
+    try {
+        deferred.resolve($cookies.getObject(dataName));
+    } catch (e) {
+        deferred.reject(e);
+        console.log('error with getting data');
+    }
     return deferred.promise;
   }
   let removeData = (dataName) => {
     let deferred = $q.defer();
-    $timeout(() => {
+    try {
       deferred.resolve($cookies.remove(dataName));
-    }, 10);
+    } catch (e) {
+      deferred.reject(e);
+      console.log('error with removing data');
+    }
     return deferred.promise;
   }
 

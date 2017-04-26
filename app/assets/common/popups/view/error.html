@@ -3,6 +3,7 @@
     <div class="error-icon">
       <i></i>
     </div>
-    <div class="error-text" ng-bind="ngDialogData.msg"></div>
+    <div class="error-text">Oops! {{ngDialogData.status}}: {{ngDialogData.statusText}}</div>
+    <div class="error-text" ng-bind="ngDialogData.data.response.msg"></div>
   </div>
 </div>
