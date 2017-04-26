@@ -81,8 +81,17 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
   }
   vm.getCategories = () => {
     itemsService.getCategories()
-      .then( (res)=> {
+      .then( (res) => {
         vm.categories = res;
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
+  vm.setCategory = (category) => {
+    currentService.setData('category', category)
+      .then( (res) => {
+        console.log('set category success');
       })
       .catch( (e) => {
         vm.showError(e);

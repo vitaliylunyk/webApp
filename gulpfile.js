@@ -13,7 +13,8 @@ const gulp = require('gulp'),
     babel = require('gulp-babel'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync').create(),
-    inject = require('gulp-inject');
+    inject = require('gulp-inject'),
+    csslint = require('gulp-csslint');;
 
     // Libs
     gulp.task('vendor-scripts', () => {
@@ -81,6 +82,8 @@ const gulp = require('gulp'),
       return gulp.src('app/style/styles.scss')
         .pipe(sass())
         .pipe(autoprefixer('last 2 version'))
+        .pipe(csslint())
+        .pipe(csslint.formatter())
         .pipe(rename({ suffix: '.min' }))
         .pipe(cssnano())
         .pipe(gulp.dest('dist/styles'))

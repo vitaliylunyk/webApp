@@ -175,6 +175,7 @@ header {
       padding: 10px;
       border-radius: 20px 20px 0 0;
       position: relative;
+      text-align: center;
       &-item {
         display: inline-block;
         vertical-align: top;
@@ -183,6 +184,9 @@ header {
         height: 100%;
         box-sizing: border-box;
         cursor: pointer;
+        &:last-child  {
+          border: none;
+        }
         &.menu {
           display: none;
         }
