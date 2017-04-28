@@ -93,7 +93,12 @@ const gulp = require('gulp'),
 
     // Scripts
     gulp.task('scripts', ['vendor-scripts'], () => {
-      return gulp.src(['app/js/**/*.js', 'app/assets/**/*.js'])
+      return gulp.src([
+        'app/js/**/*.js',
+        'app/assets/**/*.js',
+        '!app/js/**/*.spec.js',
+        '!app/assets/**/*.spec.js'
+      ])
         .pipe(babel({presets: ['es2015']}))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))

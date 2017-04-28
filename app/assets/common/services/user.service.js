@@ -1,8 +1,8 @@
 'use strict';
 app.factory('userService', userService);
 
-userService.$inject = ['$http', 'ngDialog', 'api', '$q'];
-function userService ($http, ngDialog, api, $q) {
+userService.$inject = ['$http', 'api', '$q'];
+function userService ($http, api, $q) {
   let vm = this;
   let getCoutriesList = () => {
     let deferred = $q.defer();
