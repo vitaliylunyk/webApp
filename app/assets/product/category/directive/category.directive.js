@@ -6,7 +6,7 @@ function categoryDirective() {
         restrict: 'E',
         scope: {},
         bindToController: true,
-        templateUrl: 'category/view/category-directive.html',
+        templateUrl: 'product/category/view/category-directive.html',
         controller : categoryController,
         link: link,
         controllerAs: 'categoryVm'
@@ -33,6 +33,15 @@ function categoryController ($scope, currentService, ngDialog, $location) {
         } else {
           $location.path('/');
         }
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
+  vm.setSubcategory = (subcategory) => {
+    currentService.setData('subcategory', subcategory)
+      .then( (res) => {
+        console.log('set subcategory success');
       })
       .catch( (e) => {
         vm.showError(e);

@@ -97,6 +97,15 @@ function headerController ($scope, ngDialog, currentService, accessService, $loc
         vm.showError(e);
       });
   }
+  vm.setSubcategory = (subcategory) => {
+    currentService.setData('subcategory', subcategory)
+      .then( (res) => {
+        console.log('set subcategory success');
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
   vm.activate = () => {
     vm.getUserData();
     vm.getCategories();

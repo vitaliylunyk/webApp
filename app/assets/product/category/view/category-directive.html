@@ -4,7 +4,7 @@
     <ul class="subcategory-wrapper">
       <li class="subcategory-wrapper-item" ng-repeat="subcategory in categoryVm.category.subCategories">
         <i></i>
-        <a class="subcategory-wrapper-item-link" ng-bind="subcategory.name"></a>
+        <a class="subcategory-wrapper-item-link" ng-click="categoryVm.setSubcategory(subcategory)" ng-bind="subcategory.name" href="#items/{{subcategory.name | lowercase}}"></a>
       </li>
     </ul>
 </div>

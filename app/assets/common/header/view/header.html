@@ -44,7 +44,7 @@
         <a href="#category/{{category.name | lowercase}}" ng-click="headerVm.setCategory(category)" class="header-categories-list-item-title" ng-bind="category.name"></a>
         <ul class="item-subcategories">
           <li class="item-subcategories-subcategory" ng-repeat="subcategory in category.subCategories">
-            <a class="item-subcategories-subcategory-title" ng-bind="subcategory.name"></a>
+            <a class="item-subcategories-subcategory-title" ng-click="headerVm.setSubcategory(subcategory)" href="#items/{{subcategory.name | lowercase}}" ng-bind="subcategory.name"></a>
           </li>
         </ul>
       </li>

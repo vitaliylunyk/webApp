@@ -23,7 +23,6 @@
         box-shadow: 0px 0px 1px rgba(0,0,0,0.2) inset;
         margin: 10px;
         background-color: $color-primary;
-        color: $color-white;
         border-radius: 20px;
         cursor: pointer;
         &:hover {
@@ -34,6 +33,7 @@
           font-family: 'webApp';
           font-size: 200px;
           font-style: normal;
+          color: $color-white;
           &:before {
             content: $icon-category;
           }
@@ -42,6 +42,8 @@
           font-size: 20px;
           line-height: 70px;
           text-transform: uppercase;
+          color: $color-white;
+          text-decoration: none;
         }
       }
     }

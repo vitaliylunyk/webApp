@@ -34,8 +34,14 @@ function appRouter ($routeProvider, $locationProvider) {
             checkAccess: checkAccess
           }
         })
-        .when('/category/:name*', {
-          templateUrl: 'category/category.html'
+        .when('/category/:category*', {
+          templateUrl: 'product/category/category.html'
+        })
+        .when('/items/:item*', {
+          templateUrl: 'product/subcategory/subcategory.html'
+        })
+        .when('/:item*/details', {
+          templateUrl: 'product/details/details.html'
         })
         .otherwise({redirectTo: '/'});
         $locationProvider.hashPrefix('');

@@ -16,8 +16,34 @@ function itemsService ($http, api, $q) {
     });
     return deferred.promise;
   }
+
+  let getItemsBySubcategory = (subcategoryId) => {
+    let deferred = $q.defer();
+    $http.get(api + '/products/bysubcategory/' + subcategoryId)
+    .then( (res) => {
+      deferred.resolve(res.data);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
+      console.log('error with getting categories');
+    });
+    return deferred.promise;
+  }
+  let getItem = (itemId) => {
+    let deferred = $q.defer();
+    $http.get(api + '/products/' + itemId)
+    .then( (res) => {
+      deferred.resolve(res.data);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
+      console.log('error with getting item info');
+    });
+    return deferred.promise;
+  }
   let service = {
-    getCategories: getCategories
+    getCategories: getCategories,
+    getItemsBySubcategory: getItemsBySubcategory
   };
   return service;
 }
