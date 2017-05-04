@@ -40,8 +40,11 @@ function appRouter ($routeProvider, $locationProvider) {
         .when('/items/:item*', {
           templateUrl: 'product/subcategory/subcategory.html'
         })
-        .when('/:item*/details', {
+        .when('/details/:item*', {
           templateUrl: 'product/details/details.html'
+        })
+        .when('/seller/:name*', {
+          templateUrl: 'product/seller/seller.html'
         })
         .otherwise({redirectTo: '/'});
         $locationProvider.hashPrefix('');

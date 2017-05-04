@@ -25,7 +25,19 @@ function itemsService ($http, api, $q) {
     })
     .catch( (e) => {
       deferred.reject(e);
-      console.log('error with getting categories');
+      console.log('error with getting items');
+    });
+    return deferred.promise;
+  }
+  let getSellerItems = (sellerId) => {
+    let deferred = $q.defer();
+    $http.get(api + '/products/byseller/' + sellerId)
+    .then( (res) => {
+      deferred.resolve(res.data);
+    })
+    .catch( (e) => {
+      deferred.reject(e);
+      console.log('error with getting items');
     });
     return deferred.promise;
   }
@@ -43,7 +55,9 @@ function itemsService ($http, api, $q) {
   }
   let service = {
     getCategories: getCategories,
-    getItemsBySubcategory: getItemsBySubcategory
+    getItemsBySubcategory: getItemsBySubcategory,
+    getSellerItems: getSellerItems,
+    getItem: getItem
   };
   return service;
 }

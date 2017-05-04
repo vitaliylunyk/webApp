@@ -48,6 +48,15 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
         vm.showError(e);
       });
   }
+  vm.setProductId = (id) => {
+    currentService.setData('product', id)
+      .then( (res) => {
+        console.log('set product success');
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
   vm.activate = () => {
     vm.getSubcategory();
   }

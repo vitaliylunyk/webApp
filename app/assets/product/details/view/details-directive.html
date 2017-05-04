@@ -1,10 +1,13 @@
-<div class="category-container">
-  <div class="category-title" ng-bind="categoryVm.category.name"></div>
-  <div class="category-wrapper">
-    <ul class="subcategory-wrapper">
-      <li class="subcategory-wrapper-item" ng-repeat="subcategory in categoryVm.category.subCategories">
+<div class="details-container">
+  <div class="details-title" ng-bind="detailsVm.item.name"></div>
+  <div class="details-wrapper">
+    <i style="background: url('{{detailsVm.item.image_url}}') center center no-repeat;"></i>
+    <div class="details-wrapper-right">
+      <div class="description" ng-bind="detailsVm.item.description"></div>
+      <div class="seller-block">
         <i></i>
-        <a class="subcategory-wrapper-item-link" ng-click="categoryVm.setSubcategory(subcategory)" ng-bind="subcategory.name" href="#items/{{subcategory.name | lowercase}}"></a>
-      </li>
-    </ul>
+        <a class="seller-link" ng-bind="detailsVm.sellerName" ng-click="detailsVm.setSellerId(detailsVm.sellerId)" href="#seller/{{detailsVm.sellerName | lowercase}}"></a>
+      </div>
+    </div>
+  </div>
 </div>
