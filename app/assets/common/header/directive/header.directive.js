@@ -14,8 +14,19 @@ function headerDirective() {
     return directive;
 }
 
-headerController.$inject = ['$scope', 'ngDialog', 'currentService', 'accessService', '$location', '$route', 'itemsService'];
-function headerController ($scope, ngDialog, currentService, accessService, $location, $route, itemsService) {
+headerController.$inject = [
+ '$rootScope',
+ '$scope',
+ 'ngDialog',
+ 'currentService',
+ 'accessService',
+ '$location',
+ '$route',
+ 'itemsService',
+ '$timeout'
+];
+function headerController ($rootScope, $scope, ngDialog, currentService,
+   accessService, $location, $route, itemsService, $timeout) {
   let vm = this;
   vm.showError = (errorData) => {
     ngDialog.closeAll();

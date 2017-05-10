@@ -3,7 +3,6 @@ app.factory('itemsService', itemsService);
 
 itemsService.$inject = ['$http', 'api', '$q'];
 function itemsService ($http, api, $q) {
-  let vm = this;
   let getCategories = () => {
     let deferred = $q.defer();
     $http.get(api + '/categories/')

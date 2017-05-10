@@ -29,6 +29,7 @@ const gulp = require('gulp'),
         'node_modules/angular-datepicker/dist/index.min.js',
         'node_modules/angular-cookies/angular-cookies.min.js',
         'bower_components/tg-angular-validator/dist/angular-validator.min.js',
+        'node_modules/socket.io-client/dist/socket.io.min.js'
       ])
         .pipe(gulp.dest('dist/scripts'))
         .pipe(browserSync.reload({stream: true}))
@@ -62,6 +63,7 @@ const gulp = require('gulp'),
       'dist/scripts/index.min.js',
       'dist/scripts/angular-validator.min.js',
       'dist/scripts/angular-cookies.min.js',
+      'dist/scripts/socket.io.min.js',
       'dist/scripts/main.min.js'
     ]);
     return gulp.src('app/index.html')

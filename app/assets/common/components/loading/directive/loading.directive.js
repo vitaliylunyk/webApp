@@ -6,7 +6,7 @@ function loadingDirective () {
     restrict:'E',
     templateUrl:"common/components/loading/view/loading.html",
     controller: loadingController,
-    controllerAs: 'loadingVm',
+    controllerAs: 'loadingVm'
     };
     return directive;
 }

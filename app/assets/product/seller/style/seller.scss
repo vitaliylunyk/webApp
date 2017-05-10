@@ -20,8 +20,9 @@
         cursor: pointer;
         i {
           display: block;
-          width: 200px;
+          width: auto;
           height: 200px;
+          background-size: contain;
         }
         a {
           font-size: 20px;

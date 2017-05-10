@@ -1,0 +1,14 @@
+.notification-container {
+  position: absolute;
+  z-index: 99;
+  right: 10px;
+  top: 10px;
+  color: $color-white;
+  background-color: $color-secondary;
+  padding: 10px;
+  border-radius: 10px;
+  display: none;
+  &.active {
+    display: block;
+  }
+}

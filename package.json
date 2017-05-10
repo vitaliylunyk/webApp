@@ -50,6 +50,7 @@
     "angular-route": "^1.6.4",
     "angular-sanitize": "^1.6.4",
     "ng-dialog": "^1.0.1",
+    "socket.io-client": "^1.7.4",
     "ui-select": "^0.19.8"
   }
 }

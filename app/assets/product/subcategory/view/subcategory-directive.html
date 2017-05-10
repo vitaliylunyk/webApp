@@ -3,7 +3,8 @@
   <div class="subcategory-wrapper">
     <ul class="items-wrapper">
       <li class="items-wrapper-item" ng-repeat="item in subCategoryVm.items">
-        <i style="background: url('{{item.image_url}}') center center no-repeat;"></i>
+        <i style="background: url('{{item.image_url}}') center center no-repeat;" ng-if="item.image_url"></i>
+        <i class="no-image" ng-if="!item.image_url"></i>
         <a class="items-wrapper-item-link" ng-bind="item.name" ng-click="subCategoryVm.setProductId(item.id)" href="#details/{{item.name | lowercase}}"></a>
         <div class="items-wrapper-item-desc" ng-bind="item.description"></div>
       </li>
