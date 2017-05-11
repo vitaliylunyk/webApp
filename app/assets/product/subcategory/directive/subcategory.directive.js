@@ -25,6 +25,17 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
       data: errorData
     });
   }
+  vm.getUserData = () => {
+    currentService.getData('userData')
+      .then( (res) => {
+        vm.userRole = res && res.role_id ? res.role_id.type : '';
+        vm.userToken = res && res.token ? res.token : '';
+        vm.userId = res && res._id ? res._id : '';
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
   vm.getSubcategory = () => {
     currentService.getData('subcategory')
       .then( (res) => {
@@ -48,6 +59,15 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
         vm.showError(e);
       });
   }
+  vm.productRemove = (id) => {
+    itemsService.removeItem(vm.userToken, id)
+    .then( () => {
+      vm.getItemsBySubcategory(vm.subcategory.id);
+    })
+    .catch( (e) => {
+      vm.showError(e);
+    });
+  }
   vm.setProductId = (id) => {
     currentService.setData('product', id)
       .then( (res) => {
@@ -57,8 +77,12 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
         vm.showError(e);
       });
   }
+  vm.isUser = (id) => {
+    return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));
+  }
   vm.activate = () => {
     vm.getSubcategory();
+    vm.getUserData();
   }
   vm.activate();
 }

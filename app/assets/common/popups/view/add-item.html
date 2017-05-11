@@ -1,0 +1,123 @@
+<div class="popup-container" user-directive>
+  <form enctype="multipart/form-data" class="popup-form" angular-validator-submit="userVm.addNewItem()" name="addForm" novalidate angular-validator>
+      <div class="input-container">
+        <input
+          type="text"
+          name="itemName"
+          placeholder="name"
+          ng-model="userVm.addItem.name"
+          class="popup-input"
+          required-message="'this field is required'"
+          validate-on="dirty"
+          required>
+      </div>
+      <div class="input-container">
+        <input
+         type="text"
+         name="description"
+         placeholder="description"
+         ng-model="userVm.addItem.description"
+         class="popup-input"
+         required-message="'this field is required'"
+         validate-on="dirty"
+         required>
+     </div>
+     <div class="input-container">
+       <input
+        type="file"
+        name="image"
+        placeholder="image"
+        accept="image/gif, image/jpeg, image/png"
+        ng-model="userVm.addItem.image"
+        class="popup-input"
+        required-message="'this field is required'"
+        validate-on="dirty"
+        required>
+    </div>
+    <div class="input-container">
+        <ui-select
+          ng-model="userVm.addItem.category_selected"
+          name="category"
+          theme="selectize"
+          class="popup-select category"
+          on-select="userVm.categorySelected()"
+          ng-class="{'has-error':addForm.$submitted && addForm.category.$invalid}"
+          required>
+          <ui-select-match placeholder="Select category">{{$select.selected.name}}</ui-select-match>
+          <ui-select-choices repeat="item in userVm.categories | filter: $select.search" refresh-delay="0">
+            <div ng-bind-html="item.name| highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <label class='select-error-label' ng-class="{'has-error':addForm.$submitted && addForm.category.$invalid}">Please, select item category</label>
+    </div>
+    <div class="input-container" ng-show="userVm.show_subcategory">
+      <ui-select
+       ng-model="userVm.addItem.subcategory_selected"
+       name="subcategory"
+       theme="selectize"
+       ng-disabled="disabled"
+       class="popup-select subcategory"
+       ng-class="{'has-error':addForm.$submitted && addForm.subcategory.$invalid}"
+       required>
+        <ui-select-match placeholder="subcategory">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="item in userVm.subcategories track by $index" refresh-delay="0">
+          <span ng-bind-html="item.name | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
+      <label class='select-error-label' ng-class="{'has-error':addForm.$submitted && addForm.subcategory.$invalid}">Please, select item subcategory</label>
+    </div>
+    <div class="input-container">
+      <input
+       type="text"
+       name="countbougth"
+       placeholder="count bought"
+       ng-pattern="/^\d+$/"
+       ng-model="userVm.addItem.count_bought"
+       class="popup-input"
+       invalid-message="'please, enter numbers only'"
+       required-message="'this field is required'"
+       validate-on="dirty"
+       required>
+    </div>
+    <div class="input-container">
+      <input
+       type="text"
+       name="countsold"
+       placeholder="count sold"
+       ng-pattern="/^\d+$/"
+       ng-model="userVm.addItem.count_sold"
+       class="popup-input"
+       invalid-message="'please, enter numbers only'"
+       required-message="'this field is required'"
+       validate-on="dirty"
+       required>
+    </div>
+    <div class="input-container">
+      <input
+       type="text"
+       name="pricebougth"
+       placeholder="price bought"
+       ng-pattern="/^\d+$/"
+       ng-model="userVm.addItem.price_bought"
+       class="popup-input"
+       invalid-message="'please, enter numbers only'"
+       required-message="'this field is required'"
+       validate-on="dirty"
+       required>
+    </div>
+    <div class="input-container">
+      <input
+       type="text"
+       name="pricesold"
+       placeholder="price sold"
+       ng-pattern="/^\d+$/"
+       ng-model="userVm.addItem.price_sold"
+       class="popup-input"
+       invalid-message="'please, enter numbers only'"
+       required-message="'this field is required'"
+       validate-on="dirty"
+       required>
+    </div>
+    <button class="popup-button">Add item</button>
+  </form>
+</div>

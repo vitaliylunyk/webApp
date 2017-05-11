@@ -1,5 +1,5 @@
 <div class="notification-container" ng-class="{active: notificationVm.isDisplay}">
-  <div class="seller-name" ng-bind="notificationVm.userData"></div>
+  <a class="seller-name" ng-click="notificationVm.setSellerId()" href="#seller/{{notificationVm.userData | lowercase}}" ng-bind="notificationVm.userData"></a>
   <div class="text">added new item:</div>
-  <div class="item-name" ng-bind="notificationVm.item"></div>
+  <a class="item-name" ng-click="notificationVm.setProductId()" href="#details/{{notificationVm.item | lowercase}}" ng-bind="notificationVm.item"></a>
 </div>

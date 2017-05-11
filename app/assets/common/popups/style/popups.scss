@@ -32,6 +32,9 @@
           border-color: $color-success;
         }
       }
+      &[type="file"] {
+        background-color: $color-white;
+      }
     }
     .popup-button {
       padding: 15px;
@@ -96,7 +99,10 @@
           }
         }
       }
-      &.country, &.city {
+      &.country,
+      &.city,
+      &.category,
+      &.subcategory {
         &.has-error {
           border-color: $color-error;
         }

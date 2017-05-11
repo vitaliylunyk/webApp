@@ -2,7 +2,8 @@
   <div class="seller-wrapper">
     <ul class="items-wrapper">
       <li class="items-wrapper-item" ng-repeat="item in sellerVm.sellerItems">
-        <i style="background-image: url('{{item.image_url}}');"></i>
+        <i class="item-remove" ng-click="sellerVm.productRemove(item._id)" ng-if="sellerVm.isUser(item.seller_id)"></i>
+        <i class="item-image" style="background-image: url('{{item.image_url}}');"></i>
         <a class="items-wrapper-item-link" ng-bind="item.name" ng-click="sellerVm.setProductId(item.id)" href="#details/{{item.name | lowercase}}"></a>
         <div class="items-wrapper-item-desc" ng-bind="item.description"></div>
       </li>

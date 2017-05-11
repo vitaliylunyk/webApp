@@ -25,6 +25,16 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
       data: errorData
     });
   }
+  vm.getUserData = () => {
+    currentService.getData('userData')
+      .then( (res) => {
+        vm.userRole = res && res.role_id ? res.role_id.type : '';
+        vm.userToken = res && res.token ? res.token : '';
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
   vm.setProductId = (id) => {
     currentService.setData('product', id)
       .then( (res) => {
@@ -57,8 +67,21 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
         vm.showError(e);
       });
   }
+  vm.productRemove = (id) => {
+    itemsService.removeItem(vm.userToken, id)
+    .then( () => {
+      vm.getSellerProducts(vm.sellerId);
+    })
+    .catch( (e) => {
+      vm.showError(e);
+    });
+  }
+  vm.isUser = (id) => {
+    return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));
+  }
   vm.activate = () => {
     vm.getProductId();
+    vm.getUserData();
   }
   vm.activate();
 }

@@ -103,6 +103,8 @@
          placeholder="address"
          ng-model="userVm.address"
          class="popup-input"
+         required-message="'this field is required'"
+         validate-on="dirty"
          required>
      </div>
      <div class="input-container">
@@ -137,6 +139,6 @@
       </ui-select>
       <label class='select-error-label' ng-class="{'has-error':registerForm.$submitted && registerForm.city.$invalid}">Please, select your city</label>
     </div>
-    <button class="popup-button" ng-click="userVm.validateSelect()">Register</button>
+    <button class="popup-button">Register</button>
   </form>
 </div>

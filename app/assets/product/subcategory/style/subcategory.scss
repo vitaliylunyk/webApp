@@ -24,10 +24,26 @@
       background-color: $color-primary;
       border-radius: 20px;
       cursor: pointer;
-      i {
+      position: relative;
+      .item-image {
         display: block;
         width: 200px;
         height: 200px;
+      }
+      .item-remove {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        font-family: 'webApp';
+        font-style: normal;
+        font-size: 25px;
+        color: $color-white;
+        &:before {
+          content: $icon-remove;
+        }
+        &:hover {
+          color: $color-secondary;
+        }
       }
       a {
         font-size: 20px;

@@ -8,7 +8,19 @@
   padding: 10px;
   border-radius: 10px;
   display: none;
+  &:hover {
+    display: block;
+  }
   &.active {
     display: block;
+  }
+  a {
+    display: block;
+    color: $color-white;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $color-primary;
+    }
   }
 }

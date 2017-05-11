@@ -34,12 +34,19 @@ function profileControler ($scope, currentService, ngDialog, userService, $route
         className: 'ngdialog-theme-default'
       });
     }
+    vm.addItem = () => {
+      ngDialog.open({
+        template: 'common/popups/view/add-item.html',
+        className: 'ngdialog-theme-default'
+      });
+    }
     vm.getUserData = () => {
        currentService.getData('userData')
       .then( (res) => {
           userService.getUserInfo(res.token)
             .then( (res) => {
               vm.userData = res.data;
+              vm.userRole = res.data && res.data.role_id ? res.data.role_id.type : '';
               vm.getCountries();
               vm.getCities();
             });
@@ -70,6 +77,9 @@ function profileControler ($scope, currentService, ngDialog, userService, $route
               $route.reload();
             });
         });
+    }
+    vm.isUser = () => {
+      return vm.userRole == 'seller';
     }
     vm.activate = () => {
       vm.getUserData();

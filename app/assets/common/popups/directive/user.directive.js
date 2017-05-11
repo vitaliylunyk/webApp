@@ -8,23 +8,45 @@ function userDirective() {
       bindToController: true,
       controller : userController,
       controllerAs: 'userVm',
-      link: link
+      link: userLink
     };
     return directive;
 }
 
-userController.$inject = ['$scope', 'userService', 'ngDialog', '$route', 'currentService', '$location'];
-function userController ($scope, userService, ngDialog, $route, currentService, $location) {
+userController.$inject = [
+  '$scope',
+  'userService',
+  'ngDialog',
+  '$route',
+  'currentService',
+  '$location',
+  'itemsService'
+];
+function userController ($scope, userService, ngDialog,
+   $route, currentService, $location, itemsService) {
   let vm = this;
-  vm.show_city = false;
   vm.country_selected = null;
   vm.city_selected = null;
+  vm.addItem = {};
+  vm.addItem.category_selected = null;
+  vm.addItem.subcategory_selected = null;
   vm.showError = (errorData) => {
     ngDialog.closeAll();
     ngDialog.open({
       template: 'common/popups/view/error.html',
       className: 'ngdialog-theme-default',
       data: errorData
+    });
+  }
+  vm.getUserData = () => {
+     currentService.getData('userData')
+    .then( (res) => {
+      if (res) {
+        vm.userData = res;
+      }
+    })
+    .catch( (e) => {
+      vm.showError(e);
     });
   }
   vm.getCountries = () => {
@@ -36,12 +58,32 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
           vm.showError(e);
       });
   }
+  vm.getCategories = () => {
+    itemsService.getCategories()
+      .then( (res) => {
+        vm.categories = res;
+      })
+      .catch( (e) => {
+          vm.showError(e);
+      });
+  }
   vm.countrySelected = () => {
     userService.getCitiesList(vm.country_selected._id)
     .then( (res) => {
       vm.cities = res;
       vm.city_selected = null;
       vm.show_city = true;
+    })
+    .catch( (e) => {
+      vm.showError(e);
+    });
+  }
+  vm.categorySelected = () => {
+    itemsService.getSubcategoriesByCategory(vm.addItem.category_selected._id)
+    .then( (res) => {
+      vm.subcategories = res;
+      vm.subcategory_selected = null;
+      vm.show_subcategory = true;
     })
     .catch( (e) => {
       vm.showError(e);
@@ -116,14 +158,47 @@ function userController ($scope, userService, ngDialog, $route, currentService, 
           });
       });
   }
+  vm.addNewItem = () => {
+    let token = vm.userData.token;
+    let data = {
+      name: vm.addItem.itemName,
+      description: vm.addItem.description,
+      image: vm.addItem.image,
+      subcategory_id: vm.addItem.subcategory_selected._id,
+      seller_id: vm.userData._id,
+      count_bought: vm.addItem.count_bought,
+      count_sold: vm.addItem.count_sold,
+      price_bought: vm.addItem.price_bought,
+      price_sold: vm.addItem.price_sold,
+    };
+    itemsService.addItem(token, data)
+      .then( (res) => {
+          ngDialog.closeAll();
+          ngDialog.open({
+            template: 'common/popups/view/success.html',
+            className: 'ngdialog-theme-default'
+          });
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
   vm.cancel = () => {
     ngDialog.closeAll();
   }
   vm.activate = () => {
     vm.getCountries();
+    vm.getCategories();
+    vm.getUserData();
   }
   vm.activate();
 }
-function link () {
-
+function userLink (scope, element, attributes, ctrl) {
+  element.bind('change', (e) => {
+    if (e.target.type == 'file') {
+      scope.$apply( () => {
+        ctrl.addItem.image = e.target.files[0];
+      });
+    }
+  });
 }

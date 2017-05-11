@@ -18,6 +18,7 @@
         "io":true,
         "_":false,
         "$":false,
-        "app": true
+        "app": true,
+        "FormData": true
     }
 }
