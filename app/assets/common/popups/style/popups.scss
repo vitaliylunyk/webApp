@@ -174,4 +174,33 @@
       font-weight: 600;
     }
   }
+  .confirmation-text {
+    color: $color-primary;
+    font-size: 20px;
+    text-align: center;
+  }
+  .button-box {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    .popup-button {
+      &.confirm {
+        width: calc(95%/2);
+        padding: 15px;
+        border: 2px solid $color-grey;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: $color-secondary;
+        color: $color-primary;
+        outline: none;
+        cursor: pointer;
+        &:last-child {
+          margin-left: 3%;
+        }
+      }
+    }
+  }
 }

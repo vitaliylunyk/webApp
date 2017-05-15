@@ -161,7 +161,7 @@ function userController ($scope, userService, ngDialog,
   vm.addNewItem = () => {
     let token = vm.userData.token;
     let data = {
-      name: vm.addItem.itemName,
+      name: vm.addItem.name,
       description: vm.addItem.description,
       image: vm.addItem.image,
       subcategory_id: vm.addItem.subcategory_selected._id,

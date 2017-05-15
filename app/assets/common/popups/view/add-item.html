@@ -30,6 +30,7 @@
         accept="image/gif, image/jpeg, image/png"
         ng-model="userVm.addItem.image"
         class="popup-input"
+        invalid-message="'file should be an image: gif, png, jpg'"
         required-message="'this field is required'"
         validate-on="dirty"
         required>

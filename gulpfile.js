@@ -14,7 +14,8 @@ const gulp = require('gulp'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync').create(),
     inject = require('gulp-inject'),
-    csslint = require('gulp-csslint');;
+    csslint = require('gulp-csslint'),
+    karma = require("gulp-karma-runner");
 
     // Libs
     gulp.task('vendor-scripts', () => {
@@ -47,6 +48,33 @@ const gulp = require('gulp'),
         .pipe(gulp.dest('dist/styles'))
         .pipe(browserSync.reload({stream: true}))
         .pipe(notify({ message: 'Vendor scripts task complete' }));
+    });
+
+    //tests
+    gulp.task('test', () => {
+        gulp.src([
+          './node_modules/angular/angular.js',
+          './node_modules/angular-mocks/angular-mocks.js',
+          './node_modules/angular-route/angular-route.min.js',
+          './node_modules/angular-resource/angular-resource.min.js',
+          './node_modules/angular-animate/angular-animate.min.js',
+          './node_modules/angular-sanitize/angular-sanitize.min.js',
+          './node_modules/ui-select/dist/select.min.js',
+          './node_modules/ng-dialog/js/ngDialog.min.js',
+          './node_modules/angular-datepicker/dist/index.min.js',
+          './node_modules/angular-cookies/angular-cookies.min.js',
+          './bower_components/tg-angular-validator/dist/angular-validator.js',
+          './node_modules/socket.io-client/dist/socket.io.min.js',
+          './app/js/**/*.js',
+          './app/assets/**/*.js'
+        ], {'read': false})
+        .pipe(
+            karma.server({
+                "singleRun": false,
+                "frameworks": ["jasmine"],
+                "browsers": ["Chrome"]
+            })
+        );
     });
 
     // File Index.html
@@ -94,7 +122,7 @@ const gulp = require('gulp'),
     });
 
     // Scripts
-    gulp.task('scripts', ['vendor-scripts'], () => {
+    gulp.task('scripts', ['test', 'vendor-scripts'], () => {
       return gulp.src([
         'app/js/**/*.js',
         'app/assets/**/*.js',
@@ -156,7 +184,10 @@ const gulp = require('gulp'),
       gulp.watch('app/**/*.scss', ['styles']);
 
       // Watch .js files
-      gulp.watch('app/**/*.js', ['scripts']);
+      gulp.watch(['app/**/*.js', '!app/**/*.spec.js'], ['scripts']);
+
+      // Watch tests files
+      gulp.watch(['app/**/*.spec.js'], ['test']);
 
       // Watch image files
       gulp.watch('app/images/**/*', ['images']);

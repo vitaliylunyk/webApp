@@ -10,14 +10,27 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: [
+      'jasmine'
+    ],
 
 
     // list of files / patterns to load in the browser
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
-      './app/js/**/*.spec.js'
+      './node_modules/angular-route/angular-route.min.js',
+      './node_modules/angular-resource/angular-resource.min.js',
+      './node_modules/angular-animate/angular-animate.min.js',
+      './node_modules/angular-sanitize/angular-sanitize.min.js',
+      './node_modules/ui-select/dist/select.min.js',
+      './node_modules/ng-dialog/js/ngDialog.min.js',
+      './node_modules/angular-datepicker/dist/index.min.js',
+      './node_modules/angular-cookies/angular-cookies.min.js',
+      './bower_components/tg-angular-validator/dist/angular-validator.js',
+      './node_modules/socket.io-client/dist/socket.io.min.js',
+      './app/js/**/*.js',
+      './app/assets/**/*.js'
     ],
 
 
