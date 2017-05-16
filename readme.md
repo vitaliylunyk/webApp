@@ -4,3 +4,6 @@ To use it you have to clone the files into your computer and download all the de
 `bower install`
 
 To run it, write gulp on your console.
+(tests runs with gulp also), if you need tests run:
+
+`karma start`

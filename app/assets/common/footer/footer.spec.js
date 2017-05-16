@@ -1,6 +1,20 @@
 describe('testing footer', function() {
-    beforeEach(module('app'));
-    it("makes testing JavaScript awesome!", function() {
-    expect(true).toBe(true);
+  var scope,
+  element = '<footer-directive></footer-directive>';
+   beforeEach(function () {
+     module('app');
+     module('common/footer/view/footer.html');
+     inject(function($injector) {
+       $rootScope = $injector.get('$rootScope');
+       $compile = $injector.get('$compile');
+     });
+     scope = $rootScope.$new();
+     element = $compile(element)(scope);
+     scope.$digest();
+   });
+  describe('notification footer', function() {
+      it('should check footer directive', function() {
+        
+      });
   });
 });

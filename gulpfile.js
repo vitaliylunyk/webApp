@@ -15,7 +15,8 @@ const gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     inject = require('gulp-inject'),
     csslint = require('gulp-csslint'),
-    karma = require("gulp-karma-runner");
+    karma = require('karma'),
+    Server = require('karma').Server;
 
     // Libs
     gulp.task('vendor-scripts', () => {
@@ -37,7 +38,7 @@ const gulp = require('gulp'),
         .pipe(notify({ message: 'Vendor scripts task complete' }));
     });
 
-    //libs styles
+    //Libs styles
     gulp.task('vendor-styles', () => {
       return gulp.src([
         'node_modules/ng-dialog/css/ngDialog.min.css',
@@ -50,31 +51,14 @@ const gulp = require('gulp'),
         .pipe(notify({ message: 'Vendor scripts task complete' }));
     });
 
-    //tests
-    gulp.task('test', () => {
-        gulp.src([
-          './node_modules/angular/angular.js',
-          './node_modules/angular-mocks/angular-mocks.js',
-          './node_modules/angular-route/angular-route.min.js',
-          './node_modules/angular-resource/angular-resource.min.js',
-          './node_modules/angular-animate/angular-animate.min.js',
-          './node_modules/angular-sanitize/angular-sanitize.min.js',
-          './node_modules/ui-select/dist/select.min.js',
-          './node_modules/ng-dialog/js/ngDialog.min.js',
-          './node_modules/angular-datepicker/dist/index.min.js',
-          './node_modules/angular-cookies/angular-cookies.min.js',
-          './bower_components/tg-angular-validator/dist/angular-validator.js',
-          './node_modules/socket.io-client/dist/socket.io.min.js',
-          './app/js/**/*.js',
-          './app/assets/**/*.js'
-        ], {'read': false})
-        .pipe(
-            karma.server({
-                "singleRun": false,
-                "frameworks": ["jasmine"],
-                "browsers": ["Chrome"]
-            })
-        );
+    //Tests
+    gulp.task('test', (done) => {
+      new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+      }, (err) => {
+            done();
+      }).start();
     });
 
     // File Index.html
@@ -100,7 +84,7 @@ const gulp = require('gulp'),
       .pipe(gulp.dest('dist'));
     });
 
-    //views
+    //Views
     gulp.task('views', () => {
     return gulp.src('app/assets/**/*.html')
     .pipe(browserSync.reload({stream: true}))
@@ -149,7 +133,7 @@ const gulp = require('gulp'),
         .pipe(notify({ message: 'Images task complete' }));
     });
 
-    //fonts
+    //Fonts
     gulp.task('fonts', () => {
       return gulp.src('app/fonts/**/*')
         .pipe(gulp.dest('dist/fonts'))
@@ -157,7 +141,7 @@ const gulp = require('gulp'),
         .pipe(notify({ message: 'Fonts task complete' }));
     });
 
-    // browser sync
+    //Browser sync
     gulp.task('browserSync', ['images', 'fonts', 'html'], () => {
       browserSync.init({
         server: {

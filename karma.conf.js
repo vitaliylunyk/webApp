@@ -14,6 +14,11 @@ module.exports = function(config) {
       'jasmine'
     ],
 
+    ngHtml2JsPreprocessor: {
+    // strip app from the file path
+      stripPrefix: 'app/assets/'
+    },
+
 
     // list of files / patterns to load in the browser
     files: [
@@ -30,7 +35,8 @@ module.exports = function(config) {
       './bower_components/tg-angular-validator/dist/angular-validator.js',
       './node_modules/socket.io-client/dist/socket.io.min.js',
       './app/js/**/*.js',
-      './app/assets/**/*.js'
+      './app/assets/**/*.js',
+      './app/assets/**/*.html'
     ],
 
 
@@ -42,6 +48,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './app/assets/**/view/*.html': ['ng-html2js'],
     },
 
 

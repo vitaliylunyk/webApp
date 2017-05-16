@@ -7,6 +7,6 @@ describe('test userService', function() {
     });
   });
   it('should be defined', function () {
-        expect(api).toBeDefined();
+    expect(api).toBeDefined();
   });
 });
