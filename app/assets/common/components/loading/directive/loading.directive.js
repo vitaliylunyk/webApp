@@ -4,7 +4,7 @@ app.directive('loadingDirective', loadingDirective);
 function loadingDirective () {
   let directive = {
     restrict:'E',
-    templateUrl:"common/components/loading/view/loading.html",
+    templateUrl:'common/components/loading/view/loading.html',
     controller: loadingController,
     controllerAs: 'loadingVm'
     };
@@ -20,7 +20,7 @@ function loadingController ($rootScope, $scope, $timeout) {
   });
   $rootScope.$on('$routeChangeSuccess', () => {
     $timeout(() => {
-      vm.isRouteLoading = false;
+      vm.isRouteLoading = false
     }, 2000);
   });
 }

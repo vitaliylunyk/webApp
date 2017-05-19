@@ -14,7 +14,8 @@ describe('testing footer', function() {
    });
   describe('notification footer', function() {
       it('should check footer directive', function() {
-        
+        //because isolated scope
+        expect(scope.$$childTail.footerVm).toBeDefined();
       });
   });
 });

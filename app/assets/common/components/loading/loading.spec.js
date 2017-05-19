@@ -7,7 +7,6 @@ describe('testing loading', function() {
     inject(function($injector) {
       $rootScope = $injector.get('$rootScope');
       $compile = $injector.get('$compile');
-      $templateCache = $injector.get('$templateCache');
       $timeout = $injector.get('$timeout');
     });
     scope = $rootScope.$new();
@@ -19,21 +18,26 @@ describe('testing loading', function() {
       expect(scope.loadingVm).toBeDefined();
       expect(scope.loadingVm.isRouteLoading).toBe(false);
     });
-    it('should check loading start event', function() {
-      $rootScope.$broadcast('$routeChangeStart');
-      expect(scope.loadingVm.isRouteLoading).toBe(true);
+    describe('loading start event', function () {
+      beforeEach(function () {
+        scope.loadingVm.isRouteLoading = true;
+        $rootScope.$broadcast('$routeChangeStart');
+      });
+      it('should check loading start event', function() {
+        expect(scope.loadingVm.isRouteLoading).toBe(true);
+      });
     });
-    it('should check loading end event', function() {
-      $rootScope.$broadcast('$routeChangeStart');
-      $rootScope.$broadcast('$routeChangeSuccess');
-      expect(scope.loadingVm.isRouteLoading).toBe(true);
+    describe('loading end event after timeout', function () {
+      beforeEach(function () {
+        scope.loadingVm.isRouteLoading = true;
+        $rootScope.$broadcast('$routeChangeSuccess');
+      });
+      it('should check loading end event after timeout', function () {
+        expect(scope.loadingVm.isRouteLoading).toBe(true);
+        $timeout.flush(2000);
+        $timeout.verifyNoPendingTasks();
+        expect(scope.loadingVm.isRouteLoading).toBe(false);
+      });
     });
-    // it('should check loading end event after 2 seconds', function() {
-    //   $rootScope.$broadcast('$routeChangeStart');
-    //   $rootScope.$broadcast('$routeChangeSuccess');
-    //   $timeout.flush(2001);
-    //   expect(scope.loadingVm.isRouteLoading).toBe(false);
-    //   console.info(scope.loadingVm);
-    // });
   });
 });

@@ -13,7 +13,9 @@ describe('testing profile', function() {
      scope.$digest();
    });
   describe('profile directive', function() {
-      // it('should check profile directive', function() {
-      // });
+      it('should check profile directive', function() {
+        //because isolated scope
+        expect(scope.$$childTail.profileVm).toBeDefined();
+      });
   });
 });
