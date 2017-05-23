@@ -1,16 +1,27 @@
 .seller-container {
   min-height: 500px;
   height: auto;
-  .seller-wrapper{
+  .seller-wrapper {
+    .before-select {
+      font-size: 16px;
+      color: $color-secondary;
+    }
+    select {
+      border: 0;
+      font-size: 16px;
+      outline: none;
+      color: $color-secondary;
+    }
     .items-wrapper {
       padding: 10px;
       list-style: none;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
       align-items: stretch;
       text-align: center;
       flex-wrap: wrap;
+      height: 600px;
+      overflow: auto;
       &-item {
         padding: 20px;
         box-shadow: 0px 0px 1px rgba(0,0,0,0.2) inset;

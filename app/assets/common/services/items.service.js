@@ -57,9 +57,16 @@ function itemsService ($http, api, $q) {
     return deferred.promise;
   }
 
-  let getItemsBySubcategory = (subcategoryId) => {
+  let getItemsBySubcategory = (subcategoryId, lastId, limitCount) => {
     let deferred = $q.defer();
-    $http.get(api + '/products/bysubcategory/' + subcategoryId)
+    let params = {
+      subcategory: subcategoryId,
+      limit: limitCount
+    }
+    if (lastId) {
+      params.lastid = lastId;
+    }
+    $http.get(api + '/products/', { params })
     .then( (res) => {
       deferred.resolve(res.data);
     })
@@ -69,9 +76,16 @@ function itemsService ($http, api, $q) {
     });
     return deferred.promise;
   }
-  let getSellerItems = (sellerId) => {
+  let getSellerItems = (sellerId, lastId, limitCount) => {
     let deferred = $q.defer();
-    $http.get(api + '/products/byseller/' + sellerId)
+    let params = {
+      seller: sellerId,
+      limit: limitCount
+    }
+    if (lastId) {
+      params.lastid = lastId;
+    }
+    $http.get(api + '/products/', { params })
     .then( (res) => {
       deferred.resolve(res.data);
     })

@@ -159,10 +159,10 @@
         placeholder="confirm password"
         ng-model="profileVm.userData.confirmPassword"
         class="profile-input"
-        validator = "userVm.password === userVm.confirmPassword"
+        validator="profileVm.userData.password === profileVm.userData.confirmPassword"
         invalid-message="'passwords do not mach'"
         validate-on="dirty">
-      <i class="save" ng-click="profileVm.changePassword($event)"></i>
+      <i class="save" ng-click="profileVm.changePassword()"></i>
      </div>
     </div>
   </form>

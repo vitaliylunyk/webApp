@@ -1,5 +1,7 @@
 <div class="seller-container">
   <div class="seller-wrapper">
+    <span class="before-select">items on page:</span>
+    <select ng-model="sellerVm.itemsCount" ng-options="option as option for option in [9, 12, 15]" ng-change="sellerVm.countSelected()"></select>
     <ul class="items-wrapper">
       <li class="items-wrapper-item" ng-repeat="item in sellerVm.sellerItems">
         <i class="item-remove" ng-click="sellerVm.productRemove(item._id)" ng-if="sellerVm.isUser(item.seller_id)"></i>

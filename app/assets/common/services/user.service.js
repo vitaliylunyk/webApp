@@ -110,6 +110,24 @@ function userService ($http, api, $q) {
     return deferred.promise;
   }
 
+  let userChangePassword = (data, token) => {
+    let deferred = $q.defer();
+    let header = {
+      headers: {
+        authorization: token
+      }
+    }
+    $http.post(api + '/changepassword', data, header)
+      .then( (res) => {
+        deferred.resolve(res);
+      })
+      .catch( (e) => {
+        deferred.reject(e);
+        console.log('error with change password');
+      });
+    return deferred.promise;
+  }
+
   let service = {
     getCoutriesList: getCoutriesList,
     getCitiesList: getCitiesList,
@@ -117,7 +135,8 @@ function userService ($http, api, $q) {
     userRegister: userRegister,
     getUserInfo: getUserInfo,
     userDelete: userDelete,
-    userEdit: userEdit
+    userEdit: userEdit,
+    userChangePassword: userChangePassword
   };
   return service;
 }

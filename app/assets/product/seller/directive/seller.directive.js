@@ -8,7 +8,7 @@ function sellerDirective() {
         bindToController: true,
         templateUrl: 'product/seller/view/seller-directive.html',
         controller : sellerController,
-        link: link,
+        link: sellerLink,
         controllerAs: 'sellerVm'
       };
       return directive;
@@ -17,6 +17,8 @@ function sellerDirective() {
 sellerController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];
 function sellerController ($scope, currentService, ngDialog, $location, itemsService) {
   let vm = this;
+  vm.sellerItems = [];
+  vm.itemsCount = 9;
   vm.showError = (errorData) => {
     ngDialog.closeAll();
     ngDialog.open({
@@ -54,11 +56,13 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
         vm.showError(e);
       });
   }
-  vm.getSellerProducts = (id) => {
-    itemsService.getSellerItems(id)
+  vm.getSellerProducts = (id, lastId) => {
+    itemsService.getSellerItems(id, lastId, vm.itemsCount)
       .then( (res) => {
         if (res) {
-          vm.sellerItems = res;
+          res.forEach( (item) => {
+            vm.sellerItems.push(item);
+          });
         } else {
           $location.path('/');
         }
@@ -79,12 +83,27 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
   vm.isUser = (id) => {
     return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));
   }
+  vm.countSelected = () => {
+    vm.lastId = vm.sellerItems[vm.sellerItems.length -1]._id;
+    vm.getSellerProducts(vm.sellerId, vm.lastId);
+  }
+  vm.loadMore = () => {
+    vm.lastId = vm.sellerItems[vm.sellerItems.length -1]._id;
+    vm.getSellerProducts(vm.sellerId, vm.lastId);
+  }
   vm.activate = () => {
     vm.getProductId();
     vm.getUserData();
   }
   vm.activate();
 }
-function link () {
-
+function sellerLink (scope, element, attributes, ctrl) {
+  let raw = element[0].children[0].children[0].children[2];
+  angular.element(raw).bind('scroll', () => {
+    if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+      scope.$apply( () => {
+        ctrl.loadMore();
+      });
+    }
+  });
 }

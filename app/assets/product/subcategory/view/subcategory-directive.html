@@ -1,6 +1,8 @@
 <div class="subcategory-container">
   <div class="subcategory-title" ng-bind="subCategoryVm.subcategory.name"></div>
   <div class="subcategory-wrapper">
+    <span class="before-select">items on page:</span>
+    <select ng-model="subCategoryVm.itemsCount" ng-options="option as option for option in [9, 12, 15]" ng-change="subCategoryVm.countSelected()"></select>
     <ul class="items-wrapper">
       <li class="items-wrapper-item" ng-repeat="item in subCategoryVm.items">
         <i class="item-remove" ng-click="subCategoryVm.productRemove(item._id)" ng-if="subCategoryVm.isUser(item.seller_id)"></i>

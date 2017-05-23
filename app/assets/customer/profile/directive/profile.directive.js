@@ -81,6 +81,18 @@ function profileControler ($scope, currentService, ngDialog, userService, $route
     vm.isUser = () => {
       return vm.userRole == 'seller';
     }
+    vm.changePassword = () => {
+      let data = {
+        password: vm.userData.password
+      }
+      currentService.getData('userData')
+        .then( (res)=> {
+          userService.userChangePassword(data, res.token)
+            .then( (res) => {
+              $route.reload();
+            });
+        });
+    }
     vm.activate = () => {
       vm.getUserData();
     }
