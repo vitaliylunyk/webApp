@@ -20,7 +20,7 @@ function loadingController ($rootScope, $scope, $timeout) {
   });
   $rootScope.$on('$routeChangeSuccess', () => {
     $timeout(() => {
-      vm.isRouteLoading = false
+      vm.isRouteLoading = false;
     }, 2000);
   });
 }

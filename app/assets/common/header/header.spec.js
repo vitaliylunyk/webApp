@@ -13,33 +13,23 @@ describe('testing header', function() {
      element = $compile(element)(scope);
      scope.$digest();
    });
-   afterEach(function () {
-       $httpBackend.flush();
-       $httpBackend.verifyNoOutstandingExpectation();
-       $httpBackend.verifyNoOutstandingRequest();
-   });
   describe('notification header', function() {
-    beforeEach(function () {
-      module('app');
-      module('common/popups/view/error.html');
-    });
     it('should check header directive', function() {
       //because isolated scope
       expect(scope.$$childTail.headerVm).toBeDefined();
     });
     it('should check activate function', function() {
-      $httpBackend.whenGET('common/popups/view/error.html').respond(200, '');
-      var onActivateSpy = spyOn(scope.$$childTail.headerVm, 'activate').and.callThrough();
-      expect(onActivateSpy).toHaveBeenCalled();
       describe('from activate call', function() {
+        afterEach(function () {
+            $httpBackend.flush();
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+        });
         it('should check getUserData function', function() {
-          $httpBackend.whenGET('common/popups/view/error.html').respond(200, '');
-          var onActivateSpyGetUserData = spyOn(scope.$$childTail.headerVm, 'getUserData').and.callThrough();
-          expect(onActivateSpyGetUserData).toHaveBeenCalled();
+          expect(currentService.getUserData).toHaveBeenCalled();
         });
         it('should check getCategories function', function() {
-          $httpBackend.whenGET('common/popups/view/error.html').respond(200, '');
-          var onActivateSpyGetCategories = spyOn(scope.$$childTail.headerVm, 'getCategories').and.callThrough();
+          var onActivateSpyGetCategories = spyOn(scope.$$childTail.headerVm, 'getCategories');
           expect(onActivateSpyGetCategories).toHaveBeenCalled();
         });
       });

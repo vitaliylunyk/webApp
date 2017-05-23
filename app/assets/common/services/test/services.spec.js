@@ -199,7 +199,7 @@ describe('test services', function() {
       ],
       subcategoryId = '1';
       $httpBackend
-        .when('GET', api + '/products/?limit=10&subcategory=1')
+        .when('GET', api + '/products/?subcategory=1')
         .respond(200, mockData);
       itemsService.getItemsBySubcategory(subcategoryId)
         .then(function(data) {
@@ -214,7 +214,7 @@ describe('test services', function() {
       ],
       sellerId = '1';
       $httpBackend
-        .when('GET', api + '/products/?limit=10&seller=1')
+        .when('GET', api + '/products/?seller=1')
         .respond(200, mockData);
       itemsService.getSellerItems(sellerId)
         .then(function(data) {
