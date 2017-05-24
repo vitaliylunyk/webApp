@@ -12,6 +12,7 @@ describe('testing header', function() {
      scope = $rootScope.$new();
      element = $compile(element)(scope);
      scope.$digest();
+     $httpBackend.whenGET('common/popups/view/error.html').respond(200, '');
    });
   describe('notification header', function() {
     it('should check header directive', function() {

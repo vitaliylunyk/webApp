@@ -17,7 +17,7 @@
       list-style: none;
       display: flex;
       flex-direction: row;
-      align-items: stretch;
+      align-items: flex-start;
       text-align: center;
       flex-wrap: wrap;
       height: 600px;
@@ -35,6 +35,18 @@
           width: auto;
           height: 200px;
           background-size: contain;
+        }
+        .no-image {
+          display: block;
+          width: 200px;
+          height: 200px;
+          font-style: normal;
+          font-size: 200px;
+          color: $color-white;
+          &:before {
+            font-family: 'webApp';
+            content: $icon-item;
+          }
         }
         .item-remove {
           position: absolute;
