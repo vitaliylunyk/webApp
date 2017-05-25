@@ -2,8 +2,8 @@
 app.component('subCategoryBlock', {
       bindings: {},
       templateUrl: 'product/subcategory/view/subcategory.html',
-      controller: subCategoryController
-      controllerAs: subCategoryVm
+      controller: subCategoryController,
+      controllerAs: 'subCategoryVm'
   });
 
 subCategoryController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];

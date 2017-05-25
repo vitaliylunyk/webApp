@@ -2,8 +2,8 @@
 app.component('sellerBlock', {
       bindings: {},
       templateUrl: 'product/seller/view/seller.html',
-      controller: sellerController
-      controllerAs: sellerVm
+      controller: sellerController,
+      controllerAs: 'sellerVm'
   });
 
 sellerController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];
