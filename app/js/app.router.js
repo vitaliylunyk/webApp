@@ -5,22 +5,34 @@ appRouter.$inject =['$routeProvider', '$locationProvider'];
 function appRouter ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-          templateUrl: 'home/home.html'
+          template: '<header-block></header-block>'+
+                    '<home-block></home-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/delivery', {
-          templateUrl: 'delivery/delivery.html'
+          template: '<header-block></header-block>'+
+                    '<delivery-block></delivery-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/payments', {
-          templateUrl: 'payments/payments.html'
+          template: '<header-block></header-block>'+
+                    '<payments-block></payments-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/about', {
-          templateUrl: 'about/about.html'
+          template: '<header-block></header-block>'+
+                    '<about-block></about-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/faq', {
-          templateUrl: 'faq/faq.html'
+          template: '<header-block></header-block>'+
+                    '<faq-block></faq-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/terms', {
-          templateUrl: 'terms/terms.html'
+          template: '<header-block></header-block>'+
+                    '<terms-block></terms-block>'+
+                    '<footer-block></footer-block>'
         })
         .when('/profile', {
           templateUrl: 'customer/profile/profile.html',
@@ -29,22 +41,32 @@ function appRouter ($routeProvider, $locationProvider) {
           }
         })
         .when('/cart', {
-          templateUrl: 'cart/cart.html',
+          template: '<header-block></header-block>'+
+                    '<cart-block></cart-block>'+
+                    '<footer-block></footer-block>',
           resolve: {
             checkAccess: checkAccess
           }
         })
         .when('/category/:category*', {
-          templateUrl: 'product/category/category.html'
+          template: '<header-block></header-block>'+
+                    '<category-block></category-block>'+
+                    '<footer-block></footer-block>',
         })
         .when('/items/:item*', {
-          templateUrl: 'product/subcategory/subcategory.html'
+          template: '<header-block></header-block>'+
+                    '<sub-category-block></sub-category-block>'+
+                    '<footer-block></footer-block>',
         })
         .when('/details/:item*', {
-          templateUrl: 'product/details/details.html'
+          template: '<header-block></header-block>'+
+                    '<details-block></details-block>'+
+                    '<footer-block></footer-block>',
         })
         .when('/seller/:name*', {
-          templateUrl: 'product/seller/seller.html'
+          template: '<header-block></header-block>'+
+                    '<seller-block></seller-block>'+
+                    '<footer-block></footer-block>',
         })
         .otherwise({redirectTo: '/'});
         $locationProvider.hashPrefix('');

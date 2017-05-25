@@ -1,11 +1,11 @@
-<div class="popup-container" user-directive>
-  <form class="popup-form" angular-validator-submit="userVm.userRegister()" name="registerForm" novalidate angular-validator>
+<div class="popup-container" popups-directive>
+  <form class="popup-form" angular-validator-submit="popupsVm.userRegister()" name="registerForm" novalidate angular-validator>
       <div class="input-container">
         <input
           type="email"
           name="email"
           placeholder="email"
-          ng-model="userVm.email"
+          ng-model="popupsVm.email"
           class="popup-input"
           invalid-message="'please, enter a correct email'"
           required-message="'this field is required'"
@@ -18,7 +18,7 @@
          name="password"
          placeholder="password"
          ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"
-         ng-model="userVm.password"
+         ng-model="popupsVm.password"
          class="popup-input"
          invalid-message="'minimum 8 characters at least 1 alphabet and 1 number'"
          required-message="'this field is required'"
@@ -30,9 +30,9 @@
         type="password"
         name="confirmPassword"
         placeholder="confirm password"
-        ng-model="userVm.confirmPassword"
+        ng-model="popupsVm.confirmPassword"
         class="popup-input"
-        validator = "userVm.password === userVm.confirmPassword"
+        validator = "popupsVm.password === popupsVm.confirmPassword"
         invalid-message="'passwords do not mach'"
         required-message="'this field is required'"
         validate-on="dirty"
@@ -43,7 +43,7 @@
         type="text"
         name="firstName"
         placeholder="first name"
-        ng-model="userVm.first_name"
+        ng-model="popupsVm.first_name"
         class="popup-input"
         required-message="'this field is required'"
         validate-on="dirty"
@@ -54,7 +54,7 @@
         type="text"
         name="lastName"
         placeholder="last name"
-        ng-model="userVm.last_name"
+        ng-model="popupsVm.last_name"
         class="popup-input"
         required-message="'this field is required'"
         validate-on="dirty"
@@ -66,7 +66,7 @@
         format="MM/dd/yyyy"
         min-view="date"
         placeholder="date of birth"
-        ng-model="userVm.date_of_birth"
+        ng-model="popupsVm.date_of_birth"
         class="popup-input date"
         readonly>
      </div>
@@ -76,7 +76,7 @@
         name="phoneNumber"
         placeholder="phone number"
         ng-pattern="/^\d+$/"
-        ng-model="userVm.phone_number"
+        ng-model="popupsVm.phone_number"
         class="popup-input"
         invalid-message="'please, enter numbers only'"
         required-message="'this field is required'"
@@ -89,7 +89,7 @@
         name="zipCode"
         placeholder="zip code"
         ng-pattern="/^\d+$/"
-        ng-model="userVm.zip_code"
+        ng-model="popupsVm.zip_code"
         class="popup-input"
         invalid-message="'please, enter numbers only'"
         required-message="'this field is required'"
@@ -101,7 +101,7 @@
          type="text"
          name="adress"
          placeholder="address"
-         ng-model="userVm.address"
+         ng-model="popupsVm.address"
          class="popup-input"
          required-message="'this field is required'"
          validate-on="dirty"
@@ -109,23 +109,23 @@
      </div>
      <div class="input-container">
         <ui-select
-          ng-model="userVm.country_selected"
+          ng-model="popupsVm.country_selected"
           name="country"
           theme="selectize"
           class="popup-select country"
-          on-select="userVm.countrySelected()"
+          on-select="popupsVm.countrySelected()"
           ng-class="{'has-error':registerForm.$submitted && registerForm.country.$invalid}"
           required>
           <ui-select-match placeholder="Select country">{{$select.selected.country}}</ui-select-match>
-          <ui-select-choices repeat="item in userVm.countries | filter: $select.search" refresh-delay="0">
+          <ui-select-choices repeat="item in popupsVm.countries | filter: $select.search" refresh-delay="0">
             <div ng-bind-html="item.country| highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
         <label class='select-error-label' ng-class="{'has-error':registerForm.$submitted && registerForm.country.$invalid}">Please, select your country</label>
     </div>
-    <div class="input-container" ng-show="userVm.show_city">
+    <div class="input-container" ng-show="popupsVm.show_city">
       <ui-select
-       ng-model="userVm.city_selected"
+       ng-model="popupsVm.city_selected"
        name="city"
        theme="selectize"
        ng-disabled="disabled"
@@ -133,7 +133,7 @@
        ng-class="{'has-error':registerForm.$submitted && registerForm.city.$invalid}"
        required>
         <ui-select-match placeholder="city">{{$select.selected}}</ui-select-match>
-        <ui-select-choices repeat="item in userVm.cities track by $index" refresh-delay="0">
+        <ui-select-choices repeat="item in popupsVm.cities track by $index" refresh-delay="0">
           <span ng-bind-html="item | highlight: $select.search"></span>
         </ui-select-choices>
       </ui-select>

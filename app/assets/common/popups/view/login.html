@@ -1,11 +1,11 @@
-<div class="popup-container" user-directive>
-  <form class="popup-form" angular-validator-submit="userVm.userLogin()" name="loginForm" novalidate angular-validator>
+<div class="popup-container" popups-directive>
+  <form class="popup-form" angular-validator-submit="popupsVm.userLogin()" name="loginForm" novalidate angular-validator>
     <div class="input-container">
       <input
         type="email"
         name="email"
         placeholder="email"
-        ng-model="userVm.login"
+        ng-model="popupsVm.login"
         class="popup-input"
         invalid-message="'enter a correct email'"
         required-message="'this field is required'"
@@ -17,7 +17,7 @@
         type="password"
         name="password"
         placeholder="password"
-        ng-model="userVm.password"
+        ng-model="popupsVm.password"
         class="popup-input"
         required-message="'this field is required'"
         validate-on="dirty"
