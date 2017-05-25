@@ -1,9 +1,9 @@
 'use strict';
-app.controller('detailsController', detailsController)
-  .component('detailsBlock', {
+app.component('detailsBlock', {
       bindings: {},
       templateUrl: 'product/details/view/details.html',
-      controller: 'detailsController as detailsVm'
+      controller: detailsController,
+      controllerAs: 'detailsVm'
   });
 
 detailsController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];

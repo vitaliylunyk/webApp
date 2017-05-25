@@ -1,9 +1,9 @@
 'use strict';
-app.controller('headerController', headerController)
-  .component('headerBlock', {
+app.component('headerBlock', {
     bindings: {},
     templateUrl: 'common/header/view/header.html',
-    controller: 'headerController as headerVm',
+    controller: headerController,
+    controllerAs: 'headerVm'
   });
 
 headerController.$inject = ['$rootScope', '$scope', 'ngDialog', '$timeout',

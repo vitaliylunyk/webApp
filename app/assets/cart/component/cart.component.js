@@ -3,7 +3,8 @@ app.controller('cartController', cartController)
   .component('cartBlock', {
       bindings: {},
       templateUrl: 'cart/view/cart.html',
-      controller: 'cartController as cartVm'
+      controller: cartController,
+      controllerAs: 'cartVm'
   });
 
 cartController.$inject = ['$scope'];

@@ -1,9 +1,9 @@
 'use strict';
-app.controller('subCategoryController', subCategoryController)
-  .component('subCategoryBlock', {
+app.component('subCategoryBlock', {
       bindings: {},
       templateUrl: 'product/subcategory/view/subcategory.html',
-      controller: 'subCategoryController as subCategoryVm'
+      controller: subCategoryController
+      controllerAs: subCategoryVm
   });
 
 subCategoryController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];

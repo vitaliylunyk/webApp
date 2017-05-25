@@ -3,7 +3,8 @@ app.controller('loadingController', loadingController)
   .component('loadingBlock', {
       bindings: {},
       templateUrl: 'common/components/loading/view/loading.html',
-      controller: 'loadingController as loadingVm'
+      controller: loadingController,
+      controllerAs: 'loadingVm'
   });
 
 loadingController.$inject = ['$rootScope', '$scope', '$timeout'];

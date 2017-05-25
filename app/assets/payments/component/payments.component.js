@@ -3,7 +3,8 @@ app.controller('paymentsController', paymentsController)
   .component('paymentsBlock', {
       bindings: {},
       templateUrl: 'payments/view/payments.html',
-      controller: 'paymentsController as paymentsVm'
+      controller: paymentsController,
+      controllerAs: 'paymentsVm'
   });
 
 paymentsController.$inject = ['$scope'];

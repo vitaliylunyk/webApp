@@ -1,9 +1,9 @@
 'use strict';
-app.controller('sellerController', sellerController)
-  .component('sellerBlock', {
+app.component('sellerBlock', {
       bindings: {},
       templateUrl: 'product/seller/view/seller.html',
-      controller: 'sellerController as sellerVm'
+      controller: sellerController
+      controllerAs: sellerVm
   });
 
 sellerController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];

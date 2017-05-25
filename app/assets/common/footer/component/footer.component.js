@@ -1,9 +1,9 @@
 'use strict';
-app.controller('footerController', footerController)
-  .component('footerBlock', {
+app.component('footerBlock', {
       bindings: {},
       templateUrl: 'common/footer/view/footer.html',
-      controller : 'footerController as footerVm',
+      controller : footerController,
+      controllerAs: 'footerVm'
     });
 
 footerController.$inject = ['$scope'];

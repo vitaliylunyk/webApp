@@ -1,9 +1,9 @@
 'use strict';
-app.controller('categoryController', categoryController)
-  .component('categoryBlock', {
+app.component('categoryBlock', {
       bindings: {},
       templateUrl: 'product/category/view/category.html',
-      controller: 'categoryController as categoryVm'
+      controller: categoryController,
+      controllerAs: 'categoryVm'
   });
 
 categoryController.$inject = ['$scope', 'currentService', 'ngDialog', '$location'];

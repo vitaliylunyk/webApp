@@ -1,18 +1,13 @@
 'use strict';
-app.controller('notificationController', notificationController)
-  .component('notificationBlock', {
+app.component('notificationBlock', {
       bindings: {},
       templateUrl: 'common/components/notification/view/notification.html',
-      controller: 'notificationController as notificationVm'
+      controller: notificationController,
+      controllerAs: 'notificationVm'
   });
 
-notificationController.$inject = [
-  '$rootScope',
-  '$scope',
-  '$timeout',
-  'currentService',
-  'ngDialog'
-];
+notificationController.$inject = ['$rootScope', '$scope', '$timeout',
+'currentService', 'ngDialog'];
 function notificationController ($rootScope, $scope, $timeout,
    currentService, ngDialog) {
   let vm = this;

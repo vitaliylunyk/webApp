@@ -3,7 +3,8 @@ app.controller('profileController', profileController)
   .component('profileBlock', {
       bindings: {},
       templateUrl: 'customer/profile/view/profile.html',
-      controller: 'profileController as profileVm'
+      controller: profileController,
+      controllerAs: 'profileVm'
   });
 
 profileController.$inject = ['$scope', 'currentService', 'ngDialog', 'userService', '$route'];

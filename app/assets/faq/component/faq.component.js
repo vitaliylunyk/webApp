@@ -1,9 +1,9 @@
 'use strict';
-app.controller('faqController', faqController)
-  .component('faqBlock', {
+app.component('faqBlock', {
       bindings: {},
       templateUrl: 'faq/view/faq.html',
-      controller: 'faqController as faqVm'
+      controller: faqController,
+      controllerAs: 'faqVm'
   });
 
 faqController.$inject = ['$scope'];

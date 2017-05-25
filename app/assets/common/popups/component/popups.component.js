@@ -1,8 +1,8 @@
 'use strict';
-app.controller('popupsController', popupsController)
-  .component('popupsBlock', {
+app.component('popupsBlock', {
       bindings: {},
-      controller: 'popupsController as popupsVm'
+      controller: popupsController,
+      controllerAs: 'popupsVm'
   });
 
 popupsController.$inject = [
