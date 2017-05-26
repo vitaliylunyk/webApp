@@ -1,6 +1,5 @@
 'use strict';
-app.controller('profileController', profileController)
-  .component('profileBlock', {
+app.component('profileBlock', {
       bindings: {},
       templateUrl: 'customer/profile/view/profile.html',
       controller: profileController,
@@ -24,13 +23,15 @@ function profileController ($scope, currentService, ngDialog, userService, $rout
     }
     vm.confirmDelete = () => {
       ngDialog.open({
-        template: 'common/popups/view/delete-confirm.html',
+        template: '<delete-block></delete-block>',
+        plain: true,
         className: 'ngdialog-theme-default'
       });
     }
     vm.addItem = () => {
       ngDialog.open({
-        template: 'common/popups/view/add-item.html',
+        template: '<add-item-block></add-item-block>',
+        plain: true,
         className: 'ngdialog-theme-default'
       });
     }

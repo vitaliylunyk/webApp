@@ -3,7 +3,7 @@
   <div class="subcategory-wrapper">
     <span class="before-select">items on page:</span>
     <select ng-model="subCategoryVm.itemsCount" ng-options="option as option for option in [9, 12, 15]" ng-change="subCategoryVm.countSelected()"></select>
-    <ul class="items-wrapper">
+    <ul class="items-wrapper" scroll-directive scroll-directive-load="subCategoryVm.loadMore()">
       <li class="items-wrapper-item" ng-repeat="item in subCategoryVm.items">
         <i class="item-remove" ng-click="subCategoryVm.productRemove(item._id)" ng-if="subCategoryVm.isUser(item.seller_id)"></i>
         <i class="item-image" style="background: url('{{item.image_url}}') center center no-repeat;" ng-if="item.image_url"></i>

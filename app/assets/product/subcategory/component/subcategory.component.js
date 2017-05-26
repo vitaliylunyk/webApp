@@ -90,13 +90,3 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
   }
   vm.$onInit = vm.activate;
 }
-// function subCategoryLink (scope, element, attributes, ctrl) {
-//   let raw = element[0].children[0].children[1].children[2];
-//   angular.element(raw).bind('scroll', () => {
-//     if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-//       scope.$apply( () => {
-//         ctrl.loadMore();
-//       });
-//     }
-//   });
-// }

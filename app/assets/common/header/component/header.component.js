@@ -47,13 +47,15 @@ function headerController ($rootScope, $scope, ngDialog, $timeout,
   };
   vm.openRegistration = () => {
     ngDialog.open({
-      template: 'common/popups/view/registration.html',
+      template: '<register-block></register-block>',
+      plain: true,
       className: 'ngdialog-theme-default'
     });
   }
   vm.openLogin = () => {
     ngDialog.open({
-      template: 'common/popups/view/login.html',
+      template: '<login-block></login-block>',
+      plain: true,
       className: 'ngdialog-theme-default'
     });
   }

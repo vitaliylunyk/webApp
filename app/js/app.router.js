@@ -23,7 +23,7 @@ function appRouter ($routeProvider, $locationProvider) {
           template: '<terms-block></terms-block>'
         })
         .when('/profile', {
-          templateUrl: '<profile-block></profile-block>',
+          template: '<profile-block></profile-block>',
           resolve: {
             checkAccess: checkAccess
           }
