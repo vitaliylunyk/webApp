@@ -1,4 +1,4 @@
-describe('testing profile', function() {
+describe('testing register', function() {
   var $componentController,
   ctrl;
   beforeEach(module('app'));
@@ -6,10 +6,10 @@ describe('testing profile', function() {
    $componentController = _$componentController_;
   }));
   beforeEach(function() {
-    ctrl = $componentController('profileBlock', null, {}, 'profileVm');
+    ctrl = $componentController('registerBlock', null, {}, 'registerVm');
   });
-  describe('profile component', function() {
-    it('should check profile scope defined', function() {
+  describe('register component', function() {
+    it('should check register scope defined', function() {
       expect(ctrl).toBeDefined();
     });
   });

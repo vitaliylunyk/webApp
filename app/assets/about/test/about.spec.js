@@ -6,9 +6,8 @@ describe('testing about', function() {
   }));
   describe('about component', function() {
       it('should check about scope defined', function() {
-         var ctrl = $componentController('aboutVm', null, {});
-          //expect(scope.aboutVm).toBeDefined();
-          console.info(ctrl);
+         var ctrl = $componentController('aboutBlock', null, {}, 'aboutVm');
+          expect(ctrl).toBeDefined();
       });
   });
 });
