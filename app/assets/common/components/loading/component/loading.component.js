@@ -1,6 +1,5 @@
 'use strict';
-app.controller('loadingController', loadingController)
-  .component('loadingBlock', {
+app.component('loadingBlock', {
       bindings: {},
       templateUrl: 'common/components/loading/view/loading.html',
       controller: loadingController,

@@ -1,6 +1,5 @@
 'use strict';
-app.controller('aboutController', aboutController)
-  .component('aboutBlock', {
+app.component('aboutBlock', {
       bindings: {},
       templateUrl: 'about/view/about.html',
       controller: aboutController,

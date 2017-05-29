@@ -1,6 +1,5 @@
 'use strict';
-app.controller('cartController', cartController)
-  .component('cartBlock', {
+app.component('cartBlock', {
       bindings: {},
       templateUrl: 'cart/view/cart.html',
       controller: cartController,
