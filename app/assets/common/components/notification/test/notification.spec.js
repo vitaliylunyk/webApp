@@ -28,6 +28,7 @@ describe('testing notification', function() {
         $rootScope.$broadcast('newItem', broadcastData);
       });
       it('should check display field is true', function () {
+        expect(ctrl.isDisplay).toBe(false);
         $timeout.flush(10);
         $timeout.verifyNoPendingTasks();
         expect(ctrl.isDisplay).toBe(true);
