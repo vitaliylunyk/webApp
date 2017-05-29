@@ -78,11 +78,17 @@
       &-desc {
         color: $color-white;
       }
+      &-price {
+        font-size: 20px;
+        color: $color-white;
+        line-height: 40px;
+      }
       &:hover {
         a {
           color: $color-secondary;
         }
-        .items-wrapper-item-desc {
+        .items-wrapper-item-desc,
+        .items-wrapper-item-price {
           color: $color-secondary;
         }
       }
