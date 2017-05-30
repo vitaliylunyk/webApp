@@ -23,6 +23,30 @@
       .description {
         font-size: 18px;
       }
+      .price {
+        font-size: 40px;
+      }
+      .add-to-block {
+        padding: 20px;
+        &-button {
+          padding: 10px;
+          font-size: 20px;
+          background-color: $color-secondary;
+          color: $color-white;
+          border-radius: 5px;
+          cursor: pointer;
+          border: none;
+          &[disabled=disabled] {
+            background-color: $color-grey;
+            &:hover {
+              background-color: $color-grey;
+            }
+          }
+          &:hover {
+            background-color: $color-primary
+          }
+        }
+      }
       .seller-block {
         cursor: pointer;
         &:hover {

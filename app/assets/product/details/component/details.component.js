@@ -6,8 +6,10 @@ app.component('detailsBlock', {
       controllerAs: 'detailsVm'
   });
 
-detailsController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];
-function detailsController ($scope, currentService, ngDialog, $location, itemsService) {
+detailsController.$inject = ['$scope', 'currentService', 'ngDialog',
+ '$location', 'itemsService', 'userService'];
+function detailsController ($scope, currentService, ngDialog,
+   $location, itemsService, userService) {
   let vm = this;
   vm.showError = (errorData) => {
     ngDialog.closeAll();
@@ -15,6 +17,15 @@ function detailsController ($scope, currentService, ngDialog, $location, itemsSe
       template: 'common/popups/view/error.html',
       className: 'ngdialog-theme-default',
       data: errorData
+    });
+  }
+  vm.getUserData = () => {
+     currentService.getData('userData')
+    .then( (res) => {
+      userService.getUserInfo(res.token)
+        .then( (res) => {
+          vm.userRole = res.data && res.data.role_id ? res.data.role_id.type : '';
+        });
     });
   }
   vm.getProductId = () => {
@@ -52,8 +63,12 @@ function detailsController ($scope, currentService, ngDialog, $location, itemsSe
         vm.showError(e);
       });
   }
+  vm.isBuyer = () => {
+    return vm.userRole == 'buyer';
+  }
   vm.activate = () => {
     vm.getProductId();
+    vm.getUserData();
   }
   vm.$onInit = vm.activate;
 }

@@ -3,7 +3,11 @@
   <div class="details-wrapper">
     <i style="background: url('{{detailsVm.item.image_url}}') center center no-repeat;"></i>
     <div class="details-wrapper-right">
+      <div class="price" ng-bind="detailsVm.item.price_sold | euroCurrency"></div>
       <div class="description" ng-bind="detailsVm.item.description"></div>
+      <div class="add-to-block">
+        <button class="add-to-block-button" ng-disabled="!detailsVm.isBuyer()" ng-click="detailsVm.addTo(item._id)">Add to cart</button>
+      </div>
       <div class="seller-block">
         <i></i>
         <a class="seller-link" ng-bind="detailsVm.sellerName" ng-click="detailsVm.setSellerId(detailsVm.sellerId)" href="#seller/{{detailsVm.sellerName | lowercase}}"></a>

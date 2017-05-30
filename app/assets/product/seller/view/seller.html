@@ -9,6 +9,9 @@
         <i class="no-image" ng-if="!item.image_url"></i>
         <a class="items-wrapper-item-link" ng-bind="item.name" ng-click="sellerVm.setProductId(item.id)" href="#details/{{item.name | lowercase}}"></a>
         <div class="items-wrapper-item-price" ng-bind="item.price_sold | euroCurrency"></div>
+        <div class="add-to-block">
+          <button class="add-to-block-button" ng-disabled="!detailsVm.isBuyer()" ng-click="detailsVm.addTo(item._id)">Add to cart</button>
+        </div>
         <div class="items-wrapper-item-desc" ng-bind="item.description"></div>
       </li>
     </ul>
