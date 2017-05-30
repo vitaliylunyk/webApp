@@ -6,9 +6,9 @@ app.component('loginBlock', {
       controllerAs: 'loginVm'
   });
 
-loginController.$inject = ['$scope', 'userService', 'ngDialog', '$route',
+loginController.$inject = ['$rootScope', '$scope', 'userService', 'ngDialog', '$route',
   'currentService'];
-function loginController ($scope, userService, ngDialog,
+function loginController ($rootScope, $scope, userService, ngDialog,
    $route, currentService, $location, itemsService) {
   let vm = this;
   vm.showError = (errorData) => {
@@ -19,7 +19,7 @@ function loginController ($scope, userService, ngDialog,
       data: errorData
     });
   }
-  vm.userLogin = () => {
+  vm.userLogin = (e) => {
     let data = {
       email: vm.login,
       password: vm.password
@@ -30,6 +30,7 @@ function loginController ($scope, userService, ngDialog,
         .then( (res) => {
           $route.reload();
           ngDialog.closeAll();
+          $rootScope.$broadcast('changeHeader');
         })
         .catch( (e) => {
           vm.showError(e);

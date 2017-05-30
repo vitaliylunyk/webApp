@@ -8,11 +8,11 @@
       <a href="#faq" class="header-links-item">faq</a>
       <a href="#terms" class="header-links-item last">terms and conditions</a>
       <div class="header-links-right">
-        <div class="login-block" ng-show="!headerVm.isEmpty()">
+        <div class="login-block" ng-if="!headerVm.isEmpty()">
           <div class="header-links-item" ng-click="headerVm.openRegistration()">sign up</div>
           <div class="header-links-item" ng-click="headerVm.openLogin()">sign in</div>
         </div>
-        <div class="user-data" ng-show="headerVm.isEmpty()">
+        <div class="user-data" ng-if="headerVm.isEmpty()">
           <a href="#profile" class="user-login"><i></i> {{headerVm.userName}}</a>
           <span class="user-data-dropdown">
             <a href="#profile" class="user-data-dropdown-link">Profile</a>

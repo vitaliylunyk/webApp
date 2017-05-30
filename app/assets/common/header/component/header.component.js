@@ -11,6 +11,7 @@ headerController.$inject = ['$rootScope', '$scope', 'ngDialog', '$timeout',
 function headerController ($rootScope, $scope, ngDialog, $timeout,
    currentService, accessService, $location, $route, itemsService) {
   let vm = this;
+  vm.userData = {};
   vm.showError = (errorData) => {
     ngDialog.closeAll();
     ngDialog.open({
@@ -32,6 +33,8 @@ function headerController ($rootScope, $scope, ngDialog, $timeout,
         .catch( (e) => {
           vm.showError(e);
         });
+      } else {
+        vm.userData = {};
       }
     })
     .catch( (e) => {
@@ -67,6 +70,7 @@ function headerController ($rootScope, $scope, ngDialog, $timeout,
         .then( () => {
           $location.path('/');
           $route.reload();
+          vm.getUserData();
         })
         .catch( (e) => {
           vm.showError(e);
@@ -108,4 +112,7 @@ function headerController ($rootScope, $scope, ngDialog, $timeout,
     vm.getCategories();
   }
   vm.$onInit = vm.activate;
+  $rootScope.$on('changeHeader', () => {
+      vm.getUserData();
+  });
 }

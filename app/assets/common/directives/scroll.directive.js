@@ -8,7 +8,7 @@ function scrollDirective() {
       };
       return directive;
 }
-function scrollLink (scope, element, attributes, fn) {
+function scrollLink (scope, element, attributes) {
   let raw = element[0];
   angular.element(raw).bind('scroll', (e) => {
     e.preventDefault();
