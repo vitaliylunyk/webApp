@@ -27,6 +27,7 @@ function headerController ($rootScope, $scope, ngDialog, $timeout,
         .then( () => {
           vm.userData = res;
           vm.userName = vm.userData.first_name + " " + vm.userData.last_name;
+          vm.isEmpty();
         })
         .catch( (e) => {
           vm.showError(e);
