@@ -9,6 +9,7 @@ app.component('sellerBlock', {
 sellerController.$inject = ['$scope', 'currentService', 'ngDialog', '$location', 'itemsService'];
 function sellerController ($scope, currentService, ngDialog, $location, itemsService) {
   let vm = this;
+  vm.itemsList = [];
   vm.sellerItems = [];
   vm.itemsCount = 9;
   vm.showError = (errorData) => {
@@ -72,8 +73,14 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
       vm.showError(e);
     });
   }
+  vm.addTo = (id) => {
+    console.log(id);
+  }
   vm.isUser = (id) => {
     return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));
+  }
+  vm.isBuyer = () => {
+    return vm.userRole == 'buyer';
   }
   vm.countSelected = () => {
     vm.lastId = vm.sellerItems[vm.sellerItems.length -1]._id;

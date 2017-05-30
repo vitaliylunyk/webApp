@@ -38,12 +38,13 @@
           border: none;
           &[disabled=disabled] {
             background-color: $color-grey;
+            cursor: default;
             &:hover {
               background-color: $color-grey;
             }
           }
           &:hover {
-            background-color: $color-primary
+            background-color: $color-primary;
           }
         }
       }

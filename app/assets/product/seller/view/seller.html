@@ -4,13 +4,14 @@
     <select ng-model="sellerVm.itemsCount" ng-options="option as option for option in [9, 12, 15]" ng-change="sellerVm.countSelected()"></select>
     <ul class="items-wrapper" scroll-directive scroll-directive-load="sellerVm.loadMore()">
       <li class="items-wrapper-item" ng-repeat="item in sellerVm.sellerItems">
+        <i class="item-left">{{item.count_bought - item.count_sold}} left</i>
         <i class="item-remove" ng-click="sellerVm.productRemove(item._id)" ng-if="sellerVm.isUser(item.seller_id)"></i>
         <i class="item-image" style="background-image: url('{{item.image_url}}');" ng-if="item.image_url"></i>
         <i class="no-image" ng-if="!item.image_url"></i>
         <a class="items-wrapper-item-link" ng-bind="item.name" ng-click="sellerVm.setProductId(item.id)" href="#details/{{item.name | lowercase}}"></a>
         <div class="items-wrapper-item-price" ng-bind="item.price_sold | euroCurrency"></div>
         <div class="add-to-block">
-          <button class="add-to-block-button" ng-disabled="!detailsVm.isBuyer()" ng-click="detailsVm.addTo(item._id)">Add to cart</button>
+          <button class="add-to-block-button" ng-disabled="!sellerVm.isBuyer() || {{item.count_bought - item.count_sold}} <= 0" ng-click="sellerVm.addTo(item._id)">Add to cart</button>
         </div>
         <div class="items-wrapper-item-desc" ng-bind="item.description"></div>
       </li>

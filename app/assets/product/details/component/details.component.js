@@ -63,6 +63,9 @@ function detailsController ($scope, currentService, ngDialog,
         vm.showError(e);
       });
   }
+  vm.addTo = (id) => {
+    console.log(id);
+  }
   vm.isBuyer = () => {
     return vm.userRole == 'buyer';
   }

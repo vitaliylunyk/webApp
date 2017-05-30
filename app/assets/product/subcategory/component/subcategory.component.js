@@ -73,8 +73,14 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
         vm.showError(e);
       });
   }
+  vm.addTo = (id) => {
+    console.log(id);
+  }
   vm.isUser = (id) => {
     return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));
+  }
+  vm.isBuyer = () => {
+    return vm.userRole == 'buyer';
   }
   vm.countSelected = () => {
     vm.lastId = vm.items[vm.items.length -1]._id;

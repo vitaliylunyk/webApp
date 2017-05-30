@@ -66,6 +66,12 @@
             color: $color-secondary;
           }
         }
+        .item-left {
+          position: absolute;
+          top: 5px;
+          left: 15px;
+          color: $color-white;
+        }
         a {
           font-size: 20px;
           line-height: 70px;
@@ -93,12 +99,13 @@
             border: none;
             &[disabled=disabled] {
               background-color: $color-grey;
+              cursor: default;
               &:hover {
                 background-color: $color-grey;
               }
             }
             &:hover {
-              background-color: $color-primary
+              background-color: $color-primary;
             }
           }
         }
