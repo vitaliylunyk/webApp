@@ -10,6 +10,7 @@ subCategoryController.$inject = ['$scope', 'currentService', 'ngDialog', '$locat
 function subCategoryController ($scope, currentService, ngDialog, $location, itemsService) {
   let vm = this;
   vm.items = [];
+  vm.itemsList = [];
   vm.itemsCount = 9;
   vm.showError = (errorData) => {
     ngDialog.closeAll();
@@ -46,8 +47,8 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
   }
   vm.getItemsBySubcategory = (id, lastId) => {
     itemsService.getItemsBySubcategory(id, lastId, vm.itemsCount)
-      .then( (res)=> {
-        res.forEach( (item)=> {
+      .then( (res) => {
+        res.forEach( (item) => {
           vm.items.push(item);
         });
       })
@@ -74,7 +75,26 @@ function subCategoryController ($scope, currentService, ngDialog, $location, ite
       });
   }
   vm.addTo = (id) => {
-    console.log(id);
+    currentService.getData('cart')
+      .then( (res) => {
+        if (res && res.length) {
+          vm.itemsList = [];
+          res.forEach( (item) => {
+            vm.itemsList.push(item);
+          });
+        }
+        vm.itemsList.push(id);
+        currentService.setData('cart', vm.itemsList)
+          .then( (res) => {
+            console.log('set product list success');
+          })
+          .catch( (e) => {
+            vm.showError(e);
+          });
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
   }
   vm.isUser = (id) => {
     return vm.userRole == 'admin' || (vm.userRole == 'seller' && (vm.userId == id));

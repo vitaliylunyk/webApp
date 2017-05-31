@@ -11,6 +11,7 @@ detailsController.$inject = ['$scope', 'currentService', 'ngDialog',
 function detailsController ($scope, currentService, ngDialog,
    $location, itemsService, userService) {
   let vm = this;
+  vm.itemsList = [];
   vm.showError = (errorData) => {
     ngDialog.closeAll();
     ngDialog.open({
@@ -64,7 +65,26 @@ function detailsController ($scope, currentService, ngDialog,
       });
   }
   vm.addTo = (id) => {
-    console.log(id);
+    currentService.getData('cart')
+      .then( (res) => {
+        if (res && res.length) {
+          vm.itemsList = [];
+          res.forEach( (item) => {
+            vm.itemsList.push(item);
+          });
+        }
+        vm.itemsList.push(id);
+        currentService.setData('cart', vm.itemsList)
+          .then( (res) => {
+            console.log('set product list success');
+          })
+          .catch( (e) => {
+            vm.showError(e);
+          });
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
   }
   vm.isBuyer = () => {
     return vm.userRole == 'buyer';

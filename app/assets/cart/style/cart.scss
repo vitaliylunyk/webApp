@@ -1,4 +1,83 @@
 .cart-container {
   min-height: 500px;
   height: auto;
+  .items-wrapper {
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    height: 600px;
+    overflow: auto;
+    &-item {
+      padding: 20px;
+      box-shadow: 0px 0px 1px rgba(0,0,0,0.2) inset;
+      margin: 10px;
+      background-color: $color-primary;
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      width: 245px;
+      box-sizing: border-box;
+      .item-image {
+        display: block;
+        width: 200px;
+        height: 200px;
+      }
+      .no-image {
+        display: block;
+        width: 200px;
+        height: 200px;
+        font-style: normal;
+        font-size: 200px;
+        color: $color-white;
+        &:before {
+          font-family: 'webApp';
+          content: $icon-item;
+        }
+      }
+      .item-remove {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        font-family: 'webApp';
+        font-style: normal;
+        font-size: 25px;
+        color: $color-white;
+        &:before {
+          content: $icon-remove;
+        }
+        &:hover {
+          color: $color-secondary;
+        }
+      }
+      a {
+        font-size: 20px;
+        line-height: 70px;
+        text-transform: uppercase;
+        color: $color-white;
+        text-decoration: none;
+      }
+      &-desc {
+        color: $color-white;
+      }
+      &-price {
+        font-size: 20px;
+        color: $color-white;
+        line-height: 40px;
+      }
+      &:hover {
+        a {
+          color: $color-secondary;
+        }
+        .items-wrapper-item-desc,
+        .items-wrapper-item-price {
+          color: $color-secondary;
+        }
+      }
+    }
+  }
 }
