@@ -1,6 +1,21 @@
 .cart-container {
   min-height: 500px;
   height: auto;
+  .no-items {
+    text-align: center;
+    color: $color-primary;
+    i {
+      font-family: 'webApp';
+      font-size: 50px;
+      font-style: normal;
+      &:before {
+        content: $icon-no-item;
+      }
+    }
+    span {
+      font-size: 50px;
+    }
+  }
   .items-wrapper {
     padding: 10px;
     list-style: none;

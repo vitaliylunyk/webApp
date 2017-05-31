@@ -1,4 +1,8 @@
 <div class="cart-container">
+  <div class="no-items" ng-if="cartVm.itemsInCart.length == 0">
+    <i></i>
+    <span>There is no items in cart</span>
+  </div>
   <ul class="items-wrapper">
     <li class="items-wrapper-item" ng-repeat="item in cartVm.itemsInCart">
       <i class="item-remove" ng-click="cartVm.productRemove(item._id)"></i>

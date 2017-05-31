@@ -6,8 +6,9 @@ app.component('cartBlock', {
       controllerAs: 'cartVm'
   });
 
-cartController.$inject = ['$scope', 'ngDialog', 'currentService', 'itemsService'];
-function cartController ($scope, ngDialog, currentService, itemsService) {
+cartController.$inject = ['$scope', 'ngDialog', 'currentService', 'itemsService',
+                          '$route'];
+function cartController ($scope, ngDialog, currentService, itemsService, $route) {
   let vm = this;
   vm.itemsList = [];
   vm.itemsInCart = [];
@@ -36,21 +37,23 @@ function cartController ($scope, ngDialog, currentService, itemsService) {
   }
   vm.getItemsList = () => {
     vm.itemsInCart = [];
-    vm.itemsList.forEach( (item) => {
-      itemsService.getItem(item)
-        .then( (res) => {
-          if (res) {
-            vm.item = res[0];
-            vm.sellerName = vm.item.seller[0].first_name + " "
-             + vm.item.seller[0].last_name;
-            vm.sellerId = vm.item.seller[0]._id;
-            vm.itemsInCart.push(vm.item);
-          }
-        })
-        .catch( (e) => {
-          vm.showError(e);
-        });
-    })
+    if (vm.itemsList.length) {
+      vm.itemsList.forEach( (item) => {
+        itemsService.getItem(item)
+          .then( (res) => {
+            if (res) {
+              vm.item = res[0];
+              vm.sellerName = vm.item.seller[0].first_name + " "
+               + vm.item.seller[0].last_name;
+              vm.sellerId = vm.item.seller[0]._id;
+              vm.itemsInCart.push(vm.item);
+            }
+          })
+          .catch( (e) => {
+            vm.showError(e);
+          });
+      });
+    }
   }
   vm.setProductId = (id) => {
     currentService.setData('product', id)
@@ -67,7 +70,7 @@ function cartController ($scope, ngDialog, currentService, itemsService) {
     currentService.setData('cart', vm.itemsList)
       .then( (res) => {
         console.log('set product list success');
-        vm.getItems();
+        $route.reload();
       })
       .catch( (e) => {
         vm.showError(e);
