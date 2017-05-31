@@ -13,4 +13,5 @@
       <div class="items-wrapper-item-desc" ng-bind="item.description"></div>
     </li>
   </ul>
+  <button class="add-button" ng-click="cartVm.makeOrder()" ng-disabled="!cartVm.isBuyer()">Make Order</button>
 </div>

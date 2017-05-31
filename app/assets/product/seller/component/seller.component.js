@@ -79,10 +79,18 @@ function sellerController ($scope, currentService, ngDialog, $location, itemsSer
         if (res && res.length) {
           vm.itemsList = [];
           res.forEach( (item) => {
-            vm.itemsList.push(item);
+            let data = {
+              _id: item._id,
+              count: 1
+            }
+            vm.itemsList.push(data);
           });
         }
-        vm.itemsList.push(id);
+        let data = {
+          _id: id,
+          count: 1
+        }
+        vm.itemsList.push(data);
         currentService.setData('cart', vm.itemsList)
           .then( (res) => {
             console.log('set product list success');

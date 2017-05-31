@@ -7,8 +7,9 @@ app.component('cartBlock', {
   });
 
 cartController.$inject = ['$scope', 'ngDialog', 'currentService', 'itemsService',
-                          '$route'];
-function cartController ($scope, ngDialog, currentService, itemsService, $route) {
+                          '$route', 'ordersService'];
+function cartController ($scope, ngDialog, currentService,
+   itemsService, $route, ordersService) {
   let vm = this;
   vm.itemsList = [];
   vm.itemsInCart = [];
@@ -19,6 +20,16 @@ function cartController ($scope, ngDialog, currentService, itemsService, $route)
       className: 'ngdialog-theme-default',
       data: errorData
     });
+  }
+  vm.getUserData = () => {
+    currentService.getData('userData')
+      .then( (res) => {
+        vm.userRole = res && res.role_id ? res.role_id.type : '';
+        vm.userToken = res && res.token ? res.token : '';
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
   }
   vm.getItems = () => {
     currentService.getData('cart')
@@ -39,7 +50,7 @@ function cartController ($scope, ngDialog, currentService, itemsService, $route)
     vm.itemsInCart = [];
     if (vm.itemsList.length) {
       vm.itemsList.forEach( (item) => {
-        itemsService.getItem(item)
+        itemsService.getItem(item._id)
           .then( (res) => {
             if (res) {
               vm.item = res[0];
@@ -76,7 +87,35 @@ function cartController ($scope, ngDialog, currentService, itemsService, $route)
         vm.showError(e);
       });
   }
+  vm.makeOrder = () => {
+    let data = {
+      items: vm.itemsList
+    }
+    ordersService.makeOrder(data, vm.userToken)
+      .then( (res) => {
+        currentService.removeData('cart')
+        .then( (res) => {
+          console.log('order success');
+          $route.reload();
+          ngDialog.closeAll();
+          ngDialog.open({
+            template: 'common/popups/view/success.html',
+            className: 'ngdialog-theme-default'
+          });
+        })
+        .catch( (e) => {
+          vm.showError(e);
+        });
+      })
+      .catch( (e) => {
+        vm.showError(e);
+      });
+  }
+  vm.isBuyer = () => {
+    return vm.userRole == 'buyer';
+  }
   vm.activate = () => {
+    vm.getUserData();
     vm.getItems();
   }
   vm.$onInit = vm.activate;
